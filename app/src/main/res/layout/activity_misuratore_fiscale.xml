@@ -91,18 +91,26 @@
         fab:menu_fab_hide_animation="@anim/fab_scale_down">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/MF_add_Prove"
+            android:id="@+id/MF_add_Prova1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu_camera"
+            android:src="@drawable/ic_content_paste"
             fab:fab_size="mini"
             fab:fab_label="Add Prove" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/MF_add_Allegato"
+            android:id="@+id/MF_add_Camera1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
+            fab:fab_size="mini"
+            fab:fab_label="Add Allegato" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/MF_add_Doc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_attachment"
             fab:fab_size="mini"
             fab:fab_label="Add Allegato" />
 
