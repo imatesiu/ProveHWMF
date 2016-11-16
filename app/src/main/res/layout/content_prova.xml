@@ -14,20 +14,88 @@
     tools:showIn="@layout/activity_prova">
 
 
-    <TextView
-        android:text="Produttore MF:"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewPMF"
+        android:layout_alignTop="@+id/textViewPMFP"
+        android:layout_toEndOf="@+id/textViewPMFM"
+        android:id="@+id/spinner" />
 
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textViewPMF"
-        android:layout_toEndOf="@+id/textViewPMF"
-        android:id="@+id/spinner" />
+        android:layout_alignTop="@+id/textViewPMFM"
+        android:layout_toEndOf="@+id/textViewPMFM"
+        android:id="@+id/spinnerMMF" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView7"
+        android:layout_alignStart="@+id/spinner"
+        android:entries="@array/list_prove_hw"
+        android:id="@+id/spinnerTipoProva" />
+
+    <TextView
+        android:text="Esito:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerTipoProva"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_marginTop="26dp"
+        android:id="@+id/textView8" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView8"
+        android:layout_alignStart="@+id/spinnerTipoProva"
+        android:entries="@array/list_esito_prove_hw"
+        android:id="@+id/spinnerEsito" />
+
+    <TextView
+        android:text="Allegati:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerEsito"
+        android:layout_alignEnd="@+id/textView7"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textViewAllegati" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textViewAllegati"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:text="Produttore MF:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewPMFP"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Matricola MF:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewPMFM"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Tipo Prova:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/spinnerMMF"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

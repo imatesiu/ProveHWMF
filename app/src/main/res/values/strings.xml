@@ -7,4 +7,27 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_misuratore_fiscale">MisuratoreFiscaleActivity</string>
     <string name="title_activity_prova">ProvaActivity</string>
+
+
+    <string-array name="list_prove_hw">
+        <item>Termiche</item>
+        <item>Impermeabilità</item>
+        <item>Vibrazione</item>
+        <item>Disturbi Elettromagnetici</item>
+        <item>Disturbi Condotti</item>
+        <item>Batteria sotto protezione SF</item>
+        <item>Alimentazione senza Vincolo Fiscale</item>
+        <item>Scariche Elettrostatiche</item>
+    </string-array>
+
+
+    <string-array name="list_esito_prove_hw">
+        <item>In corso</item>
+        <item>Positivo</item>
+        <item>Negativo</item>
+        <item>Sospeso</item>
+        <item>Incerto</item>
+
+
+    </string-array>
 </resources>
