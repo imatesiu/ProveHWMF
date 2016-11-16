@@ -36,7 +36,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
     @Override
     public PHWViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_test_hw, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_allegato, parent, false);
         PHWViewHolder pvh = new PHWViewHolder(v);
         return pvh;
     }
@@ -66,7 +66,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         PHWViewHolder(View itemView) {
             super(itemView);
 
-            cv = (CardView)itemView.findViewById(R.id.card_viewinternalCT1);
+            cv = (CardView)itemView.findViewById(R.id.card_viewAllegatoTestHW);
 
             i=itemView;
             itemView.setOnClickListener(this);

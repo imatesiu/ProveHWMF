@@ -98,6 +98,14 @@
             fab:fab_label="Add Foto" />
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/MF_add_note2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_create"
+            fab:fab_size="mini"
+            fab:fab_label="Add Note" />
+
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/MF_add_Doc2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
