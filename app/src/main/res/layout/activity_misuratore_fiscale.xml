@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbarMF"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
             fab:fab_size="mini"
-            fab:fab_label="Add Allegato" />
+            fab:fab_label="Add Foto" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/MF_add_Doc1"
