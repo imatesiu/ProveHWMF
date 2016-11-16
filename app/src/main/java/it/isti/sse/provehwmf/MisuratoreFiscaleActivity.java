@@ -17,7 +17,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MF_add_Prove);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MF_add_Prova1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

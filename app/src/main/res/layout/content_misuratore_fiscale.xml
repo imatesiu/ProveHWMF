@@ -14,7 +14,7 @@
     tools:showIn="@layout/activity_misuratore_fiscale">
 
     <TextView
-        android:text="Produttore MF"
+        android:text="Produttore MF:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
@@ -33,7 +33,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Modello/Nome MF"
+        android:text="Modello/Nome MF:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -53,7 +53,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Matricola MF"
+        android:text="Matricola MF:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
