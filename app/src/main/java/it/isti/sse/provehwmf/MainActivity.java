@@ -3,6 +3,8 @@ package it.isti.sse.provehwmf;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.clans.fab.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -46,6 +51,21 @@ public class MainActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
+
+        RecyclerView rv = (RecyclerView)findViewById(R.id.ElencoMF);
+        rv.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(llm);
+
+
+        List<String> test = new ArrayList<>();
+        test.add("a");
+        test.add("b");
+        MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(test);
+        rv.setAdapter(adapter);
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
