@@ -4,10 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
@@ -37,6 +42,25 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        RecyclerView rv = (RecyclerView)findViewById(R.id.cardListProve);
+        rv.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rv.setLayoutManager(llm);
+
+
+        List<String> test = new ArrayList<>();
+        test.add("a");
+        test.add("b");
+        test.add("c");
+        test.add("b");test.add("b");test.add("b");
+        ProveAdapter adapter = new ProveAdapter(test);
+        rv.setAdapter(adapter);
+
+
+
     }
 
 }

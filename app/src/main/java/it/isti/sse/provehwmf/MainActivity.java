@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity
         List<String> test = new ArrayList<>();
         test.add("a");
         test.add("b");
+        test.add("c");
+        test.add("b");test.add("b");test.add("b");
         MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(test);
         rv.setAdapter(adapter);
 
