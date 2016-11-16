@@ -47,7 +47,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         RecyclerView rv = (RecyclerView)findViewById(R.id.cardListProve);
         rv.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv.setLayoutManager(llm);
 
 
@@ -59,6 +59,14 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         ProveAdapter adapter = new ProveAdapter(test);
         rv.setAdapter(adapter);
 
+        RecyclerView rva = (RecyclerView)findViewById(R.id.Allegati);
+        rva.setHasFixedSize(true);
+        LinearLayoutManager llma = new LinearLayoutManager(this);
+        llma.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rva.setLayoutManager(llma);
+
+        AllegatiAdapter adaptera = new AllegatiAdapter(test);
+        rva.setAdapter(adaptera);
 
 
     }

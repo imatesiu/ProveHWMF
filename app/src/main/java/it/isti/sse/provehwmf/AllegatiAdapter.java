@@ -12,16 +12,16 @@ import java.util.List;
  * Created by m4rt3 on 16/11/2016.
  */
 
-public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolder> {
+public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWViewHolder> {
 
 
-    private List<String> ListaProve;
+    private List<String> ListaAllegati;
     private static MyClickListener myClickListener;
 
 
-    public ProveAdapter(List<String> Prove){
+    public AllegatiAdapter(List<String> Allegati){
         super();
-        this.ListaProve = Prove;
+        this.ListaAllegati = Allegati;
     }
 
     public static void setMyClickListener(MyClickListener myClickListener) {
@@ -52,7 +52,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
     @Override
     public int getItemCount() {
-        return ListaProve.size();
+        return ListaAllegati.size();
     }
 
     public static class PHWViewHolder extends RecyclerView.ViewHolder implements View

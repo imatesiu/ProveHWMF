@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,34 +20,6 @@
     tools:context="it.isti.sse.provehwmf.MisuratoreFiscaleActivity"
     tools:showIn="@layout/activity_misuratore_fiscale">
 
-    <TextView
-        android:text="Produttore MF:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:id="@+id/editText"
-        android:inputType="textPersonName"
-        android:contentDescription="Modello Misuratore Fiscale"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Modello/Nome MF:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_alignBaseline="@+id/editText"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,15 +30,6 @@
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
         android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="Matricola MF:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_marginTop="51dp"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -73,7 +43,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="Prove HW MF"
+        android:text="Elenco Prove HW MF:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
@@ -89,13 +59,12 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Allegati HW MF"
+        android:text="Elenco Allegati HW MF:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView6"
-        android:layout_marginTop="11dp"
-        android:layout_below="@+id/cardListProve"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/cardListProve" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/Allegati"
@@ -104,4 +73,43 @@
         android:layout_below="@+id/textView6"
         android:layout_alignParentStart="true" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:inputType="textPersonName"
+        android:contentDescription="Modello Misuratore Fiscale"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Produttore MF:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Matricola MF:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/editText2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Modello/Nome MF:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_marginTop="53dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
+</ScrollView>
