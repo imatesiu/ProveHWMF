@@ -36,6 +36,17 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        FloatingActionButton provaHW = (FloatingActionButton) findViewById(R.id.add_Prova);
+        provaHW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, ProvaActivity.class);
+                startActivity(i);
+            }
+        });
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
