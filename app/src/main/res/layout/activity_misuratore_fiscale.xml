@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="it.isti.sse.provehwmf.MainActivity">
+    tools:context="it.isti.sse.provehwmf.MisuratoreFiscaleActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -18,14 +18,32 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Misuratore Fiscale" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fab_size_mini"
+                android:text="Edit"
+                android:layout_gravity="right"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fab_size_mini"
+                android:text="Save"
+                android:layout_gravity="right"
+                />
+
+        </android.support.v7.widget.Toolbar>
+
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_misuratore_fiscale" />
 
     <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu"
+        android:id="@+id/menuMF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -68,28 +86,20 @@
         fab:menu_labels_position="left"
         fab:menu_openDirection="up"
         fab:menu_backgroundColor="@android:color/transparent"
-        fab:menu_fab_label="Select task"
+        fab:menu_fab_label="your_label_here"
         fab:menu_fab_show_animation="@anim/fab_scale_up"
         fab:menu_fab_hide_animation="@anim/fab_scale_down">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_MF"
+            android:id="@+id/MF_add_Prove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
             fab:fab_size="mini"
-            fab:fab_label="Add MF" />
+            fab:fab_label="Add Prove" />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_Prova"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu_camera"
-            fab:fab_size="mini"
-            fab:fab_label="Add Prova" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_Allegato"
+            android:id="@+id/MF_add_Allegato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_menu_camera"
