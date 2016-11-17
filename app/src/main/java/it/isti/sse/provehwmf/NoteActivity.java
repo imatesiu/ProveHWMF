@@ -22,8 +22,8 @@ public class NoteActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                setResult(Activity.RESULT_OK);//, intent);
+                finish();
             }
         });
 
@@ -37,6 +37,14 @@ public class NoteActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // When the user hits the back button set the resultCode
+        // to Activity.RESULT_CANCELED to indicate a failure
+        setResult(Activity.RESULT_CANCELED);
+        super.onBackPressed();
     }
 
 }

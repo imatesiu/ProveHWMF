@@ -123,4 +123,12 @@ public class ProvaActivity extends AppCompatActivity {
         rva.setAdapter(adaptera);
     }
 
+    @Override
+    public void onBackPressed() {
+        // When the user hits the back button set the resultCode
+        // to Activity.RESULT_CANCELED to indicate a failure
+        setResult(Activity.RESULT_CANCELED);
+        super.onBackPressed();
+    }
+
 }

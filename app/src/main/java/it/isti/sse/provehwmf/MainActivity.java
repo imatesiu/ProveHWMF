@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                Snackbar.make(drawer, "Nessun allegato selezionato", Snackbar.LENGTH_LONG)
+                Snackbar.make(drawer, "Nessun MF Salvato", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         }else{
