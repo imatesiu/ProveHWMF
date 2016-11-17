@@ -60,25 +60,17 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
 
         //holder.onClick(holder.i);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(mContext, view, Gravity.RIGHT);
-                MenuInflater inflater = popup.getMenuInflater();
-                inflater.inflate(R.menu.menu_allegato, popup.getMenu());
-                popup.setOnMenuItemClickListener(new MisuratoriFiscaleAdapter.MyMenuItemClickListenerMF());
-                popup.show();
-            }
-        });
+        holder.overflow.setOnClickListener(new MisuratoriFiscaleAdapter.MyMenuItemClickListenerMF(position));
 
     }
 
-    /**
-     * Click listener for popup menu items
-     */
-    class MyMenuItemClickListenerMF implements PopupMenu.OnMenuItemClickListener {
+    class MyMenuItemClickListenerMF implements View
+            .OnClickListener, PopupMenu.OnMenuItemClickListener {
 
-        public MyMenuItemClickListenerMF() {
+        int position;
+        public MyMenuItemClickListenerMF(int position) {
+            this.position=position;
+
         }
 
         @Override
@@ -86,13 +78,26 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+
+
                     return true;
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
+                    ListaMisuratoreFiscale.remove(position);
+                    notifyItemRemoved(position);
                     return true;
                 default:
             }
             return false;
+        }
+
+        @Override
+        public void onClick(View v) {
+            PopupMenu popup = new PopupMenu(mContext, v, Gravity.RIGHT);
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.menu_allegato, popup.getMenu());
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
         }
     }
 

@@ -57,27 +57,17 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
 
         //holder.onClick(holder.i);
 
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(mContext, view, Gravity.RIGHT);
-                MenuInflater inflater = popup.getMenuInflater();
-                inflater.inflate(R.menu.menu_allegato, popup.getMenu());
-                popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-                popup.show();
-            }
-        });
+        holder.overflow.setOnClickListener(new AllegatiAdapter.MyMenuItemClickListenerMF(position));
 
     }
 
+    class MyMenuItemClickListenerMF implements View
+            .OnClickListener, PopupMenu.OnMenuItemClickListener {
 
+        int position;
+        public MyMenuItemClickListenerMF(int position) {
+            this.position=position;
 
-    /**
-     * Click listener for popup menu items
-     */
-    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {
         }
 
         @Override
@@ -85,13 +75,26 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+
+
                     return true;
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
+                    ListaAllegati.remove(position);
+                    notifyItemRemoved(position);
                     return true;
                 default:
             }
             return false;
+        }
+
+        @Override
+        public void onClick(View v) {
+            PopupMenu popup = new PopupMenu(mContext, v, Gravity.RIGHT);
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.menu_allegato, popup.getMenu());
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
         }
     }
 
