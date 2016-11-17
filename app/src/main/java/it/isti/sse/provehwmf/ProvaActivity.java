@@ -1,5 +1,6 @@
 package it.isti.sse.provehwmf;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -93,6 +95,17 @@ public class ProvaActivity extends AppCompatActivity {
                 // i.putExtra("key","value");
                // startActivity(i);
             }
+        });
+
+        Button buttonSave  = (Button)  findViewById(R.id.savePHW);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
+                setResult(Activity.RESULT_OK);//, intent);
+                finish();
+            }
+
         });
 
         RecyclerView rva = (RecyclerView)findViewById(R.id.AllegatiProva);

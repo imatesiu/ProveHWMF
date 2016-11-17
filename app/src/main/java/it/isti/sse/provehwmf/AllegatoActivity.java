@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionMenu;
@@ -42,7 +43,7 @@ public class AllegatoActivity extends AppCompatActivity {
                 menuRed.close(false);
                 Intent i = new Intent(AllegatoActivity.this, NoteActivity.class);
                 // i.putExtra("key","value");
-                startActivity(i);
+                startActivityForResult(i,10);
             }
         });
 
@@ -97,6 +98,17 @@ public class AllegatoActivity extends AppCompatActivity {
             }
         });
 
+        Button buttonSave  = (Button)  findViewById(R.id.saveAllegato);
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
+                setResult(Activity.RESULT_OK);//, intent);
+                finish();
+            }
+
+        });
+
 
 
     }
@@ -104,7 +116,7 @@ public class AllegatoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == 1) {
+        if (requestCode == 1) { //File
             if(resultCode == Activity.RESULT_OK){
                 String result=data.getStringExtra("result");
             }
@@ -114,7 +126,10 @@ public class AllegatoActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         }
-        if (requestCode == 100) {
+        if (requestCode == 10) { // Note
+
+        }
+        if (requestCode == 100) { //camera
             if(resultCode == Activity.RESULT_OK){
                 String result=data.getStringExtra("result");
             }

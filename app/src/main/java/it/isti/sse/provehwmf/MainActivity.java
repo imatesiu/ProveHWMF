@@ -1,8 +1,9 @@
 package it.isti.sse.provehwmf;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,12 +19,11 @@ import android.view.MenuItem;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.MisuratoriFiscaleAdapter;
-import it.isti.sse.provehwmf.util.Utility;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menu);
                 menuRed.close(false);
                 Intent i = new Intent(MainActivity.this, MisuratoreFiscaleActivity.class);
-                startActivity(i);
+                startActivityForResult(i,550);
             }
         });
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menu);
                 menuRed.close(false);
                 Intent i = new Intent(MainActivity.this, ProvaActivity.class);
-                startActivity(i);
+                startActivityForResult(i,540);
             }
         });
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity
                 menuRed.close(false);
                 Intent i = new Intent(MainActivity.this, AllegatoActivity.class);
                 // i.putExtra("key","value");
-                startActivityForResult(i,1);
+                startActivityForResult(i,530);
                 //startActivity(i);
             }
         });
@@ -166,5 +166,31 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 550) { //MF
+            if (resultCode == Activity.RESULT_OK) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                Snackbar.make(drawer, "Salvato MF", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                //String result = data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                Snackbar.make(drawer, "Nessun allegato selezionato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }else{
+            if (requestCode == 540) { //Prova
+            }else {
+                if (requestCode == 530) { //Allegato
+                }
+            }
+        }
+
+
     }
 }

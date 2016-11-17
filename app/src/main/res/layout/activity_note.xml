@@ -31,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/fab_size_mini"
             android:text="Save"
+            android:id="@+id/saveNote"
             android:layout_gravity="end"
             />
         </android.support.v7.widget.Toolbar>
