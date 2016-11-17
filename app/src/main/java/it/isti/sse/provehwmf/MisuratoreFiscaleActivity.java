@@ -139,14 +139,21 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                 String result = data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
                 Snackbar.make(coordinatorLayout, "Nessun Test HW salvato", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         }
 
         if (requestCode == 150) { //Allegato
-
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
+                Snackbar.make(coordinatorLayout, "Nessun Allegato Salvato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
         }
 
     }

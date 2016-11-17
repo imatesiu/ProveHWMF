@@ -3,6 +3,7 @@ package it.isti.sse.provehwmf;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -151,13 +152,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_search) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_receive) {
 
         } else if (id == R.id.nav_send) {
 
@@ -185,8 +184,24 @@ public class MainActivity extends AppCompatActivity
             }
         }else{
             if (requestCode == 540) { //Prova
+                if(resultCode == Activity.RESULT_OK){
+                    String result=data.getStringExtra("result");
+                }
+                if (resultCode == Activity.RESULT_CANCELED) {
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    Snackbar.make(drawer, "Nessuna Test HW Salvato", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }else {
                 if (requestCode == 530) { //Allegato
+                    if(resultCode == Activity.RESULT_OK){
+                        String result=data.getStringExtra("result");
+                    }
+                    if (resultCode == Activity.RESULT_CANCELED) {
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        Snackbar.make(drawer, "Nessun Allegato Salvato", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
                 }
             }
         }

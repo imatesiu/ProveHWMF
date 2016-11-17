@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,12 +46,11 @@ public class ProvaActivity extends AppCompatActivity {
         menuRed.setClosedOnTouchOutside(true);
 
 
-        FloatingActionButton notaHW = (FloatingActionButton) findViewById(R.id.P_add_note);
+     /*   FloatingActionButton notaHW = (FloatingActionButton) findViewById(R.id.P_add_note);
         notaHW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuPHW);
                 menuRed.close(false);
                 Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
@@ -62,8 +63,7 @@ public class ProvaActivity extends AppCompatActivity {
         cameraHW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuPHW);
                 menuRed.close(false);
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -81,7 +81,7 @@ public class ProvaActivity extends AppCompatActivity {
                 // i.putExtra("key","value");
                // startActivity(i);
             }
-        });
+        });*/
 
         FloatingActionButton attachHW = (FloatingActionButton) findViewById(R.id.P_add_Doc);
         attachHW.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +94,9 @@ public class ProvaActivity extends AppCompatActivity {
                // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
                 // i.putExtra("key","value");
                // startActivity(i);
+                Intent i = new Intent(ProvaActivity.this, AllegatoActivity.class);
+                // i.putExtra("key","value");
+                startActivityForResult(i, 190);
             }
         });
 
@@ -129,6 +132,21 @@ public class ProvaActivity extends AppCompatActivity {
         // to Activity.RESULT_CANCELED to indicate a failure
         setResult(Activity.RESULT_CANCELED);
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 190) { //allegato
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.proveactivity);
+                Snackbar.make(coordinatorLayout, "Nessun Allegato Salvato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
     }
 
 }

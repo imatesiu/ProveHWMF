@@ -127,6 +127,14 @@ public class AllegatoActivity extends AppCompatActivity {
             }
         }
         if (requestCode == 10) { // Note
+            if(resultCode == Activity.RESULT_OK){
+                String result=data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
+                Snackbar.make(coordinatorLayout, "Nessuna Nota salvata", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
 
         }
         if (requestCode == 100) { //camera
@@ -135,7 +143,7 @@ public class AllegatoActivity extends AppCompatActivity {
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
-                Snackbar.make(coordinatorLayout, "Nessun allegato selezionato", Snackbar.LENGTH_LONG)
+                Snackbar.make(coordinatorLayout, "Nessuna immagine selezionata", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         }

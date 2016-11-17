@@ -2,18 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_search"
             android:icon="@drawable/ic_search"
-            android:title="Slideshow" />
+            android:title="Search" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
@@ -25,7 +18,12 @@
                         <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Send Data" />
+
+            <item
+                android:id="@+id/nav_receive"
+                android:icon="@drawable/ic_call_received"
+                android:title="Receive Data" />
         </menu>
     </item>
 
