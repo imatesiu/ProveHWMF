@@ -18,7 +18,18 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Allegato">
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fab_size_mini"
+                android:text="Save"
+                android:layout_gravity="end"
+                />
+
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
