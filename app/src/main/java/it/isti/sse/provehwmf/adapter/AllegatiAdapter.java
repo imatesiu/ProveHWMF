@@ -1,4 +1,4 @@
-package it.isti.sse.provehwmf;
+package it.isti.sse.provehwmf.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 
 import java.util.List;
+
+import it.isti.sse.provehwmf.R;
 
 /**
  * Created by m4rt3 on 16/11/2016.

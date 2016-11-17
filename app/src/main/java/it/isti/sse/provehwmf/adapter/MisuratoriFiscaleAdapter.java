@@ -1,4 +1,4 @@
-package it.isti.sse.provehwmf;
+package it.isti.sse.provehwmf.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -15,24 +15,26 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import it.isti.sse.provehwmf.MyClickListener;
+import it.isti.sse.provehwmf.R;
+
 /**
  * Created by m4rt3 on 16/11/2016.
  */
 
-public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolder> {
+public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFiscaleAdapter.MFViewHolder> {
 
 
-    private List<String> ListaProve;
+    private List<String> ListaMisuratoreFiscale;
     private Context mContext;
     private static MyClickListener myClickListener;
 
 
-    public ProveAdapter(Context mContext, List<String> Prove){
+    public MisuratoriFiscaleAdapter(Context lContext,List<String> MisuratoriFiscali){
         super();
-        this.ListaProve = Prove;
-        this.mContext = mContext;
+        this.ListaMisuratoreFiscale = MisuratoriFiscali;
+        this.mContext = lContext;
     }
-
 
     public static void setMyClickListener(MyClickListener myClickListener) {
         myClickListener = myClickListener;
@@ -44,15 +46,15 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
     }
 
     @Override
-    public PHWViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MFViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_test_hw, parent, false);
-        PHWViewHolder pvh = new PHWViewHolder(v);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_misuratore_fiscale, parent, false);
+        MFViewHolder pvh = new MFViewHolder(v);
         return pvh;
     }
 
     @Override
-    public void onBindViewHolder(PHWViewHolder holder, int position) {
+    public void onBindViewHolder(MFViewHolder holder, int position) {
       //  holder.classe.setText(lorario.get(position).getClasse());
 
 
@@ -64,13 +66,16 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
                 PopupMenu popup = new PopupMenu(mContext, view, Gravity.RIGHT);
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.menu_allegato, popup.getMenu());
-                popup.setOnMenuItemClickListener(new ProveAdapter.MyMenuItemClickListenerMF());
+                popup.setOnMenuItemClickListener(new MisuratoriFiscaleAdapter.MyMenuItemClickListenerMF());
                 popup.show();
             }
         });
 
     }
 
+    /**
+     * Click listener for popup menu items
+     */
     class MyMenuItemClickListenerMF implements PopupMenu.OnMenuItemClickListener {
 
         public MyMenuItemClickListenerMF() {
@@ -91,13 +96,12 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         }
     }
 
-
     @Override
     public int getItemCount() {
-        return ListaProve.size();
+        return ListaMisuratoreFiscale.size();
     }
 
-    public static class PHWViewHolder extends RecyclerView.ViewHolder implements View
+    public static class MFViewHolder extends RecyclerView.ViewHolder implements View
             .OnClickListener {
 
         CardView cv;
@@ -105,11 +109,11 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         public ImageView overflow;
 
 
-        PHWViewHolder(View itemView) {
+        MFViewHolder(View itemView) {
             super(itemView);
 
-            cv = (CardView)itemView.findViewById(R.id.card_viewinternalCT1);
-            overflow = (ImageView) itemView.findViewById(R.id.overflowTHW);
+            cv = (CardView)itemView.findViewById(R.id.card_view);
+            overflow = (ImageView) itemView.findViewById(R.id.overflowMF);
 
             i=itemView;
             itemView.setOnClickListener(this);

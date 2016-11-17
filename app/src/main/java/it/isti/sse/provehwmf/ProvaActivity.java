@@ -2,7 +2,7 @@ package it.isti.sse.provehwmf;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +12,12 @@ import android.view.View;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
+import it.isti.sse.provehwmf.util.Utility;
 
 public class ProvaActivity extends AppCompatActivity {
 
@@ -60,6 +64,17 @@ public class ProvaActivity extends AppCompatActivity {
                         .setAction("Action", null).show();*/
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuPHW);
                 menuRed.close(false);
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                takePictureIntent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 2 * 1024 * 1024);
+                File fileUri = Utility.getOutputMediaFile(); // create a file to save the image
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
+
+
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takePictureIntent, 100);
+                    // startActivity(takePictureIntent);
+                }
                // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
                 // i.putExtra("key","value");
                // startActivity(i);

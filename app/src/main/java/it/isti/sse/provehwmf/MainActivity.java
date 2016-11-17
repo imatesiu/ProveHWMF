@@ -1,11 +1,8 @@
 package it.isti.sse.provehwmf;
 
 import android.content.Intent;
-import android.hardware.Camera;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -22,10 +19,11 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
+import it.isti.sse.provehwmf.adapter.MisuratoriFiscaleAdapter;
+import it.isti.sse.provehwmf.util.Utility;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
                 takePictureIntent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 2 * 1024 * 1024);
-                File fileUri = getOutputMediaFile(); // create a file to save the image
+                File fileUri = Utility.getOutputMediaFile(); // create a file to save the image
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
 
 
@@ -147,20 +145,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private static File getOutputMediaFile(){
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "CameraDemo");
 
-        if (!mediaStorageDir.exists()){
-            if (!mediaStorageDir.mkdirs()){
-                return null;
-            }
-        }
-
-        String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HHmmss").format(new Date());
-        return new File(mediaStorageDir.getPath() + File.separator +
-                "IMG_"+ timeStamp + ".jpg");
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
