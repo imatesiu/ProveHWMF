@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menu);
+        menuRed.setClosedOnTouchOutside(true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_MF);
         fab.setOnClickListener(new View.OnClickListener() {

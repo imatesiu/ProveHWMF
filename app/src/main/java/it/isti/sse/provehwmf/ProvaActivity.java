@@ -41,7 +41,7 @@ public class ProvaActivity extends AppCompatActivity {
         test.add("b");
         test.add("c");
         test.add("b");test.add("b");test.add("b");
-        AllegatiAdapter adaptera = new AllegatiAdapter(test);
+        AllegatiAdapter adaptera = new AllegatiAdapter(this,test);
         rva.setAdapter(adaptera);
     }
 

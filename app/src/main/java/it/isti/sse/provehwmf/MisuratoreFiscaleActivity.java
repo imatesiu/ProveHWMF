@@ -65,7 +65,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
-        AllegatiAdapter adaptera = new AllegatiAdapter(test);
+        AllegatiAdapter adaptera = new AllegatiAdapter(this,test);
         rva.setAdapter(adaptera);
 
 
