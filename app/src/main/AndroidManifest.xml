@@ -37,6 +37,10 @@
         <activity
             android:name=".NoteActivity"
             android:label="@string/title_activity_note"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AllegatoActivity"
+            android:label="@string/title_activity_allegato"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

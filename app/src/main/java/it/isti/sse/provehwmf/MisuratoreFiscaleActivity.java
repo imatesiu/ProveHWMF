@@ -58,44 +58,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton notaHW = (FloatingActionButton) findViewById(R.id.MF_add_note1);
-        notaHW.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
-                menuRed.close(false);
-                Intent i = new Intent(MisuratoreFiscaleActivity.this, NoteActivity.class);
-               // i.putExtra("key","value");
-                startActivity(i);
-            }
-        });
 
-        FloatingActionButton cameraHW = (FloatingActionButton) findViewById(R.id.MF_add_Camera1);
-        cameraHW.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
-                menuRed.close(false);
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                takePictureIntent.putExtra(MediaStore.EXTRA_SIZE_LIMIT, 2 * 1024 * 1024);
-                File fileUri = Utility.getOutputMediaFile(); // create a file to save the image
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri); // set the image file name
-
-
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(takePictureIntent, 100);
-                    // startActivity(takePictureIntent);
-                }
-                // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
-                // i.putExtra("key","value");
-                // startActivity(i);
-            }
-        });
 
         FloatingActionButton attachHW = (FloatingActionButton) findViewById(R.id.MF_add_Doc1);
         attachHW.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +70,9 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                 menuRed.close(false);
                 // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
                 // i.putExtra("key","value");
+                Intent i = new Intent(MisuratoreFiscaleActivity.this, AllegatoActivity.class);
+                // i.putExtra("key","value");
+                startActivityForResult(i,1);
                 // startActivity(i);
             }
         });

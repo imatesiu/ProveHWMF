@@ -89,21 +89,6 @@
             fab:fab_size="mini"
             fab:fab_label="Add Prova" />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_Camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu_camera"
-            fab:fab_size="mini"
-            fab:fab_label="Add Foto" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/add_note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_create"
-            fab:fab_size="mini"
-            fab:fab_label="Add Note" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/add_Doc"
