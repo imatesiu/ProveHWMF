@@ -83,8 +83,11 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
                     return true;
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
-                    ListaMisuratoreFiscale.remove(position);
-                    notifyItemRemoved(position);
+                    try{
+                        ListaMisuratoreFiscale.remove(position);
+                    }catch (IndexOutOfBoundsException e){
+                        //TODO: exception
+                    }
                     return true;
                 default:
             }

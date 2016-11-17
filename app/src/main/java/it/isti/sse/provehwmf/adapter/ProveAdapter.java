@@ -84,9 +84,14 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
                     return true;
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
-                    ListaProve.remove(position);
-                    notifyItemRemoved(position);
+                    try{
+                        ListaProve.remove(position);
+                        notifyItemRemoved(position);
+                    }catch (IndexOutOfBoundsException e){
+                        //TODO: exception
+                    }
                     return true;
+
                 default:
             }
             return false;

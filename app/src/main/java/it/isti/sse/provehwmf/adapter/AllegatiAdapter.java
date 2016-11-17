@@ -80,8 +80,12 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                     return true;
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
-                    ListaAllegati.remove(position);
-                    notifyItemRemoved(position);
+                    try {
+                        ListaAllegati.remove(position);
+                        notifyItemRemoved(position);
+                    }catch (IndexOutOfBoundsException e){
+                        //TODO: exception
+                    }
                     return true;
                 default:
             }
