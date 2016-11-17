@@ -117,7 +117,9 @@ public class AllegatoActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 1) { //File
-            if(resultCode == Activity.RESULT_OK){
+            if(resultCode == Activity.RESULT_OK){CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
+                Snackbar.make(coordinatorLayout, "File Caricato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
               //  String result=data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -128,6 +130,9 @@ public class AllegatoActivity extends AppCompatActivity {
         }
         if (requestCode == 10) { // Note
             if(resultCode == Activity.RESULT_OK){
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
+                Snackbar.make(coordinatorLayout, "Nota Salvata", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
                // String result=data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -139,7 +144,9 @@ public class AllegatoActivity extends AppCompatActivity {
         }
         if (requestCode == 100) { //camera
             if(resultCode == Activity.RESULT_OK){
-             //   String result=data.getStringExtra("result");
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
+                Snackbar.make(coordinatorLayout, "Immagine Salvata", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);

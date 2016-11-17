@@ -136,7 +136,9 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         if (requestCode == 50) { //prova
             if (resultCode == Activity.RESULT_OK) {
-             //   String result = data.getStringExtra("result");
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
+                Snackbar.make(coordinatorLayout, "Test HW Salvato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
@@ -147,7 +149,9 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         if (requestCode == 150) { //Allegato
             if (resultCode == Activity.RESULT_OK) {
-             //   String result = data.getStringExtra("result");
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
+                Snackbar.make(coordinatorLayout, "Allegato Salvato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);

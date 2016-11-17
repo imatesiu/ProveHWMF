@@ -185,6 +185,9 @@ public class MainActivity extends AppCompatActivity
         }else{
             if (requestCode == 540) { //Prova
                 if(resultCode == Activity.RESULT_OK){
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    Snackbar.make(drawer, "Prova Salvata", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                   //  String result=data.getStringExtra("result");
                 }
                 if (resultCode == Activity.RESULT_CANCELED) {
@@ -195,7 +198,9 @@ public class MainActivity extends AppCompatActivity
             }else {
                 if (requestCode == 530) { //Allegato
                     if(resultCode == Activity.RESULT_OK){
-                       // String result=data.getStringExtra("result");
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        Snackbar.make(drawer, "Allegato Salvato", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
                     if (resultCode == Activity.RESULT_CANCELED) {
                         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
