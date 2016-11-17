@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity
         }else{
             if (requestCode == 540) { //Prova
                 if(resultCode == Activity.RESULT_OK){
-                    String result=data.getStringExtra("result");
+                  //  String result=data.getStringExtra("result");
                 }
                 if (resultCode == Activity.RESULT_CANCELED) {
                     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity
             }else {
                 if (requestCode == 530) { //Allegato
                     if(resultCode == Activity.RESULT_OK){
-                        String result=data.getStringExtra("result");
+                       // String result=data.getStringExtra("result");
                     }
                     if (resultCode == Activity.RESULT_CANCELED) {
                         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

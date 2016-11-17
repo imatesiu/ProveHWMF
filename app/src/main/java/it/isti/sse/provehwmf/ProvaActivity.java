@@ -139,7 +139,7 @@ public class ProvaActivity extends AppCompatActivity {
 
         if (requestCode == 190) { //allegato
             if (resultCode == Activity.RESULT_OK) {
-                String result = data.getStringExtra("result");
+               // String result = data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.proveactivity);

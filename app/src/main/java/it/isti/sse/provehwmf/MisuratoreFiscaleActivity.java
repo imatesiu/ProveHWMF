@@ -136,7 +136,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         if (requestCode == 50) { //prova
             if (resultCode == Activity.RESULT_OK) {
-                String result = data.getStringExtra("result");
+             //   String result = data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
@@ -147,7 +147,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         if (requestCode == 150) { //Allegato
             if (resultCode == Activity.RESULT_OK) {
-                String result = data.getStringExtra("result");
+             //   String result = data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);

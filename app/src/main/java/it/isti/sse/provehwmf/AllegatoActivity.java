@@ -118,7 +118,7 @@ public class AllegatoActivity extends AppCompatActivity {
 
         if (requestCode == 1) { //File
             if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
+              //  String result=data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
@@ -128,7 +128,7 @@ public class AllegatoActivity extends AppCompatActivity {
         }
         if (requestCode == 10) { // Note
             if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
+               // String result=data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);
@@ -139,7 +139,7 @@ public class AllegatoActivity extends AppCompatActivity {
         }
         if (requestCode == 100) { //camera
             if(resultCode == Activity.RESULT_OK){
-                String result=data.getStringExtra("result");
+             //   String result=data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.allegatoactivity);

@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_content_paste"
             fab:fab_size="mini"
-            fab:fab_label="Add Prova" />
+            fab:fab_label="Add Test HW" />
 
 
         <com.github.clans.fab.FloatingActionButton
