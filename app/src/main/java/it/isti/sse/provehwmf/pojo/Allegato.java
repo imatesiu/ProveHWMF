@@ -153,7 +153,7 @@ public class Allegato {
      * @return
      *     The note
      */
-    public Note__ getNote() {
+    public Note getNote() {
         return note;
     }
 
@@ -164,7 +164,7 @@ public class Allegato {
      * @param note
      *     The Note
      */
-    public void setNote(Note__ note) {
+    public void setNote(Note note) {
         this.note = note;
     }
 

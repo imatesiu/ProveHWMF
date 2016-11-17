@@ -183,7 +183,7 @@ public class ProvaHW {
      * @return
      *     The note
      */
-    public Note_ getNote() {
+    public Note getNote() {
         return note;
     }
 
@@ -194,7 +194,7 @@ public class ProvaHW {
      * @param note
      *     The Note
      */
-    public void setNote(Note_ note) {
+    public void setNote(Note note) {
         this.note = note;
     }
 
