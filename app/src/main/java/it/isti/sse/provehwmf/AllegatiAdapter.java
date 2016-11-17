@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MenuInflater;
@@ -57,7 +58,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(mContext, view);
+                PopupMenu popup = new PopupMenu(mContext, view, Gravity.RIGHT);
                 MenuInflater inflater = popup.getMenuInflater();
                 inflater.inflate(R.menu.menu_allegato, popup.getMenu());
                 popup.setOnMenuItemClickListener(new MyMenuItemClickListener());

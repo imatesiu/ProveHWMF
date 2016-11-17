@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         test.add("b");
         test.add("c");
         test.add("b");test.add("b");test.add("b");
-        MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(test);
+        MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(this,test);
         rv.setAdapter(adapter);
 
 

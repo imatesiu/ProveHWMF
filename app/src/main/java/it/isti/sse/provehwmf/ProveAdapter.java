@@ -1,10 +1,17 @@
 package it.isti.sse.provehwmf;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,13 +23,16 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
 
     private List<String> ListaProve;
+    private Context mContext;
     private static MyClickListener myClickListener;
 
 
-    public ProveAdapter(List<String> Prove){
+    public ProveAdapter(Context mContext, List<String> Prove){
         super();
         this.ListaProve = Prove;
+        this.mContext = mContext;
     }
+
 
     public static void setMyClickListener(MyClickListener myClickListener) {
         myClickListener = myClickListener;
@@ -48,7 +58,39 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
         //holder.onClick(holder.i);
 
+        holder.overflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popup = new PopupMenu(mContext, view, Gravity.RIGHT);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.menu_allegato, popup.getMenu());
+                popup.setOnMenuItemClickListener(new ProveAdapter.MyMenuItemClickListenerMF());
+                popup.show();
+            }
+        });
+
     }
+
+    class MyMenuItemClickListenerMF implements PopupMenu.OnMenuItemClickListener {
+
+        public MyMenuItemClickListenerMF() {
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.modificaprove:
+                    Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.cancellaprova:
+                    Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
+                    return true;
+                default:
+            }
+            return false;
+        }
+    }
+
 
     @Override
     public int getItemCount() {
@@ -60,13 +102,14 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
         CardView cv;
         View i;
-
+        public ImageView overflow;
 
 
         PHWViewHolder(View itemView) {
             super(itemView);
 
             cv = (CardView)itemView.findViewById(R.id.card_viewinternalCT1);
+            overflow = (ImageView) itemView.findViewById(R.id.overflowTHW);
 
             i=itemView;
             itemView.setOnClickListener(this);

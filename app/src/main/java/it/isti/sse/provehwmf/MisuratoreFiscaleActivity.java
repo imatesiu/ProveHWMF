@@ -56,7 +56,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         test.add("b");
         test.add("c");
         test.add("b");test.add("b");test.add("b");
-        ProveAdapter adapter = new ProveAdapter(test);
+        ProveAdapter adapter = new ProveAdapter(this,test);
         rv.setAdapter(adapter);
 
         RecyclerView rva = (RecyclerView)findViewById(R.id.Allegati);
