@@ -25,14 +25,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/fab_size_mini"
                 android:text="Edit"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/fab_size_mini"
                 android:text="Save"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 />
 
         </android.support.v7.widget.Toolbar>
@@ -44,8 +44,8 @@
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menuMF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom|end"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -86,7 +86,7 @@
         fab:menu_labels_position="left"
         fab:menu_openDirection="up"
         fab:menu_backgroundColor="@android:color/transparent"
-        fab:menu_fab_label="your_label_here"
+
         fab:menu_fab_show_animation="@anim/fab_scale_up"
         fab:menu_fab_hide_animation="@anim/fab_scale_down">
 

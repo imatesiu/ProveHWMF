@@ -1,13 +1,16 @@
 package it.isti.sse.provehwmf;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,53 @@ public class ProvaActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+
+
+        FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuPHW);
+        menuRed.setClosedOnTouchOutside(true);
+
+
+        FloatingActionButton notaHW = (FloatingActionButton) findViewById(R.id.P_add_note);
+        notaHW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuPHW);
+                menuRed.close(false);
+                Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
+                // i.putExtra("key","value");
+                startActivity(i);
+            }
+        });
+
+        FloatingActionButton cameraHW = (FloatingActionButton) findViewById(R.id.P_add_Camera);
+        cameraHW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuPHW);
+                menuRed.close(false);
+               // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
+                // i.putExtra("key","value");
+               // startActivity(i);
+            }
+        });
+
+        FloatingActionButton attachHW = (FloatingActionButton) findViewById(R.id.P_add_Doc);
+        attachHW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuPHW);
+                menuRed.close(false);
+               // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
+                // i.putExtra("key","value");
+               // startActivity(i);
+            }
+        });
 
         RecyclerView rva = (RecyclerView)findViewById(R.id.AllegatiProva);
         rva.setHasFixedSize(true);

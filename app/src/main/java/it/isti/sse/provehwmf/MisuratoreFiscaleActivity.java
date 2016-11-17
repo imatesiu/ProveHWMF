@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +33,65 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             }
         });*/
 
+
+
+        FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
+        menuRed.setClosedOnTouchOutside(true);
+
         FloatingActionButton provaHW = (FloatingActionButton) findViewById(R.id.MF_add_Prova1);
         provaHW.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
+                menuRed.close(false);
                 Intent i = new Intent(MisuratoreFiscaleActivity.this, ProvaActivity.class);
+                //i.putExtra("key","value");
                 startActivity(i);
+
+            }
+        });
+
+        FloatingActionButton notaHW = (FloatingActionButton) findViewById(R.id.MF_add_note1);
+        notaHW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
+                menuRed.close(false);
+                Intent i = new Intent(MisuratoreFiscaleActivity.this, NoteActivity.class);
+               // i.putExtra("key","value");
+                startActivity(i);
+            }
+        });
+
+        FloatingActionButton cameraHW = (FloatingActionButton) findViewById(R.id.MF_add_Camera1);
+        cameraHW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
+                menuRed.close(false);
+                // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
+                // i.putExtra("key","value");
+                // startActivity(i);
+            }
+        });
+
+        FloatingActionButton attachHW = (FloatingActionButton) findViewById(R.id.MF_add_Doc1);
+        attachHW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
+                menuRed.close(false);
+                // Intent i = new Intent(ProvaActivity.this, NoteActivity.class);
+                // i.putExtra("key","value");
+                // startActivity(i);
             }
         });
 
