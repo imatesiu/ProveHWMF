@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -126,12 +127,21 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
         View i;
         public ImageView overflow;
 
+        public TextView EsitoTestHW;
+        public TextView matricola;
+        private TextView modello;
+        public TextView data;
 
         MFViewHolder(View itemView) {
             super(itemView);
 
             cv = (CardView)itemView.findViewById(R.id.card_view);
             overflow = (ImageView) itemView.findViewById(R.id.overflowMF);
+
+            EsitoTestHW = (TextView) itemView.findViewById(R.id.textView12);
+            matricola = (TextView) itemView.findViewById(R.id.textView18);
+            modello = (TextView) itemView.findViewById(R.id.textView11);
+            data = (TextView) itemView.findViewById(R.id.textView177);
 
             i=itemView;
             itemView.setOnClickListener(this);

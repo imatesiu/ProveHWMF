@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -129,12 +130,25 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         int position;
         public ImageView overflow;
 
+        public TextView TestHW;
+        public TextView EsitoTestHW;
+        public TextView matricola;
+        public TextView modello;
+        public TextView data;
+
 
         PHWViewHolder(View itemView) {
             super(itemView);
 
             cv = (CardView)itemView.findViewById(R.id.card_viewinternalCT1);
             overflow = (ImageView) itemView.findViewById(R.id.overflowTHW);
+
+            TestHW = (TextView) itemView.findViewById(R.id.textView101);
+            EsitoTestHW = (TextView) itemView.findViewById(R.id.textView121);
+            matricola = (TextView) itemView.findViewById(R.id.textView91);
+            modello = (TextView) itemView.findViewById(R.id.textView111);
+            data = (TextView) itemView.findViewById(R.id.textView17);
+
 
             i=itemView;
             itemView.setOnClickListener(this);
