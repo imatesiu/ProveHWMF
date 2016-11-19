@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import it.isti.sse.provehwmf.MyClickListener;
 import it.isti.sse.provehwmf.R;
+import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
 
 /**
  * Created by m4rt3 on 16/11/2016.
@@ -28,12 +28,14 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
     private List<String> ListaMisuratoreFiscale;
     private Context mContext;
     private static MyClickListener myClickListener;
+    private  MisuratoriFiscale LMF;
 
 
-    public MisuratoriFiscaleAdapter(Context lContext,List<String> MisuratoriFiscali){
+    public MisuratoriFiscaleAdapter(Context lContext, List<String> MisuratoriFiscali, MisuratoriFiscale LMF){
         super();
         this.ListaMisuratoreFiscale = MisuratoriFiscali;
         this.mContext = lContext;
+        this.LMF=LMF;
     }
 
     public static void setMyClickListener(MyClickListener myClickListener) {
@@ -78,7 +80,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
-
+                    myClickListener.onItemClick(position,LMF.getMisuratoreFiscale().get(position));
 
                     return true;
                 case R.id.cancellaprova:

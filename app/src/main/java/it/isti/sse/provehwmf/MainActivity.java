@@ -3,7 +3,6 @@ package it.isti.sse.provehwmf;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.MisuratoriFiscaleAdapter;
+import it.isti.sse.provehwmf.adapter.MyClickListener;
+import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
+import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
 
 
 public class MainActivity extends AppCompatActivity
@@ -97,10 +99,23 @@ public class MainActivity extends AppCompatActivity
         test.add("b");
         test.add("c");
         test.add("b");test.add("b");test.add("b");
-        MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(this,test);
+        MisuratoriFiscale LMF = new MisuratoriFiscale();
+        MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(this,test,LMF);
         rv.setAdapter(adapter);
 
+        adapter.setMyClickListener(new MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
 
+            }
+
+            @Override
+            public void onItemClick(int position, MisuratoreFiscale MF) {
+                Intent i = new Intent(MainActivity.this, MisuratoreFiscaleActivity.class);
+                i.putExtra("MF",MF);
+                startActivityForResult(i,550);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

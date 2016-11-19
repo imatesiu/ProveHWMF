@@ -23,7 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
+import it.isti.sse.provehwmf.adapter.MyClickListenerProve;
 import it.isti.sse.provehwmf.adapter.ProveAdapter;
+import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
+import it.isti.sse.provehwmf.pojo.ProvaHW;
+import it.isti.sse.provehwmf.pojo.ProveHW;
 import it.isti.sse.provehwmf.util.Utility;
 
 public class MisuratoreFiscaleActivity extends AppCompatActivity {
@@ -113,8 +117,32 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         test.add("b");
         test.add("b");
         test.add("b");
-        ProveAdapter adapter = new ProveAdapter(this, test);
+
+        Bundle b = getIntent().getExtras();
+        ProveHW PHW = null;
+        try {
+            MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("MF");
+            MF.getDitta();
+            MF.getModello();
+            MF.getMatricola();
+
+            PHW =  MF.getProveHW();
+
+
+        }catch (ClassCastException e){
+
+        }
+
+        ProveAdapter adapter = new ProveAdapter(this, test,PHW);
         rv.setAdapter(adapter);
+        adapter.setMyClickListener(new MyClickListenerProve() {
+            @Override
+            public void onItemClick(ProvaHW provaHW) {
+                Intent i = new Intent(MisuratoreFiscaleActivity.this, ProvaActivity.class);
+                i.putExtra("Prova",provaHW);
+                startActivityForResult(i, 50);
+            }
+        });
 
         RecyclerView rva = (RecyclerView) findViewById(R.id.Allegati);
         rva.setHasFixedSize(true);

@@ -6,8 +6,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import java.io.Serializable;
+
 @Generated("org.jsonschema2pojo")
-public class Note {
+public class Note implements Serializable {
 
     /**
      * 

@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import it.isti.sse.provehwmf.MyClickListener;
 import it.isti.sse.provehwmf.R;
+import it.isti.sse.provehwmf.pojo.ProveHW;
 
 /**
  * Created by m4rt3 on 16/11/2016.
@@ -27,17 +27,19 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
     private List<String> ListaProve;
     private Context mContext;
-    private static MyClickListener myClickListener;
+    private static MyClickListenerProve myClickListener;
+    private ProveHW LPHW;
 
 
-    public ProveAdapter(Context mContext, List<String> Prove){
+    public ProveAdapter(Context mContext, List<String> Prove, ProveHW LPHW){
         super();
         this.ListaProve = Prove;
         this.mContext = mContext;
+        this.LPHW = LPHW;
     }
 
 
-    public static void setMyClickListener(MyClickListener myClickListener) {
+    public static void setMyClickListener(MyClickListenerProve myClickListener) {
         myClickListener = myClickListener;
     }
 
@@ -79,8 +81,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
-
-
+                    myClickListener.onItemClick(LPHW.getProvaHW().get(position));
                     return true;
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
