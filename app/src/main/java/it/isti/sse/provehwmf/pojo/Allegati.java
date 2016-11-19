@@ -29,7 +29,10 @@ public class Allegati implements Serializable {
      *     The allegato
      */
     public List<Allegato> getAllegato() {
-        return allegato;
+        if(allegato!=null) {
+            return allegato;
+        }
+        return new ArrayList<>();
     }
 
     /**

@@ -81,32 +81,35 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
             switch (menuItem.getItemId()) {
                 case R.id.openprovaallegato:
                     Toast.makeText(mContext, "Open", Toast.LENGTH_SHORT).show();
-                    Allegato allegato = allegati.getAllegato().get(position);
-                    String tipo = allegato.getTipo();
-                    String dati =  allegato.getDati();
-                    switch (tipo){
-                        case "jpg":{
-                            if(dati!=null){
+                    try {
+                        Allegato allegato = allegati.getAllegato().get(position);
+                        String tipo = allegato.getTipo();
+                        String dati = allegato.getDati();
+                        switch (tipo) {
+                            case "jpg": {
+                                if (dati != null) {
+                                    Intent intent = new Intent();
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    intent.setDataAndType(Uri.parse("http://goo.gl/gEgYUd"), "image/*");
+                                    mContext.startActivity(intent);
+                                }
+                            }
+                            case "doc": {
+
+                            }
+                            case "txt": {
+
+                            }
+
+                            default:
                                 Intent intent = new Intent();
                                 intent.setAction(Intent.ACTION_VIEW);
                                 intent.setDataAndType(Uri.parse("http://goo.gl/gEgYUd"), "image/*");
                                 mContext.startActivity(intent);
-                            }
                         }
-                        case "doc":{
-
-                        }
-                        case "txt":{
-
-                        }
-
-                        default:
-                            Intent intent = new Intent();
-                            intent.setAction(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.parse("http://goo.gl/gEgYUd"), "image/*");
-                            mContext.startActivity(intent);
+                    }catch (IndexOutOfBoundsException e){
+                        //TODO:Tratta eccezione
                     }
-
                     return true;
                 case R.id.cancellaprovaallegato:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
