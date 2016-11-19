@@ -82,7 +82,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                 case R.id.openprovaallegato:
                     Toast.makeText(mContext, "Open", Toast.LENGTH_SHORT).show();
                     try {
-                        Allegato allegato = allegati.getAllegato().get(position);
+                         Allegato allegato = allegati.getAllegato().get(position);
                         String tipo = allegato.getTipo();
                         String dati = allegato.getDati();
                         switch (tipo) {

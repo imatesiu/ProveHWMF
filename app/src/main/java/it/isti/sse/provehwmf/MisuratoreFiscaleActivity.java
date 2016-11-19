@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -38,6 +39,9 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
 
+    private EditText modello;
+    private EditText produttore;
+    private EditText Matricola;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,13 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarMF);
         setSupportActionBar(toolbar);
 
+        modello = (EditText)findViewById(R.id.editText);
+        produttore = (EditText)findViewById(R.id.editText2);
+        Matricola = (EditText)findViewById(R.id.editText3);
+
+        modello.setEnabled(false);
+        produttore.setEnabled(false);
+        Matricola.setEnabled(false);
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MF_add_Prova1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +110,24 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
                 setResult(Activity.RESULT_OK);//, intent);
                 finish();
+            }
+
+        });
+
+        Button buttonEdit  = (Button)  findViewById(R.id.editMF);
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
+                if(modello.isEnabled()){
+                    modello.setEnabled(false);
+                    produttore.setEnabled(false);
+                    Matricola.setEnabled(false);
+                }else {
+                    modello.setEnabled(true);
+                    produttore.setEnabled(true);
+                    Matricola.setEnabled(true);
+                }
             }
 
         });
