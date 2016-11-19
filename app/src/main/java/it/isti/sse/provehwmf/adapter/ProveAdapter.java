@@ -62,6 +62,10 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
     public void onBindViewHolder(PHWViewHolder holder, int position) {
       //  holder.classe.setText(lorario.get(position).getClasse());
 
+         /*  LPHW.getProvaHW().get(position).getMatricola();
+        LPHW.getProvaHW().get(position).getTipo();
+        LPHW.getProvaHW().get(position).getTimeStartPHW();*/
+
         holder.position=position;
         //holder.onClick(holder.i);
 
