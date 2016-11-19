@@ -1,6 +1,8 @@
 package it.isti.sse.provehwmf.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +19,8 @@ import android.widget.Toast;
 import java.util.List;
 
 import it.isti.sse.provehwmf.R;
+import it.isti.sse.provehwmf.pojo.Allegati;
+import it.isti.sse.provehwmf.pojo.Allegato;
 
 /**
  * Created by m4rt3 on 16/11/2016.
@@ -26,13 +30,15 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
 
 
     private List<String> ListaAllegati;
+    private Allegati allegati;
     private Context mContext;
 
 
-    public AllegatiAdapter(Context lContext, List<String> Allegati){
+    public AllegatiAdapter(Context lContext, List<String> ListaAllegati, Allegati allegati){
         super();
-        this.ListaAllegati = Allegati;
+        this.ListaAllegati = ListaAllegati;
         this.mContext = lContext;
+        this.allegati = allegati;
     }
 
 
@@ -73,12 +79,36 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
-                case R.id.modificaprove:
-                    Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
+                case R.id.openprovaallegato:
+                    Toast.makeText(mContext, "Open", Toast.LENGTH_SHORT).show();
+                    Allegato allegato = allegati.getAllegato().get(position);
+                    String tipo = allegato.getTipo();
+                    String dati =  allegato.getDati();
+                    switch (tipo){
+                        case "jpg":{
+                            if(dati!=null){
+                                Intent intent = new Intent();
+                                intent.setAction(Intent.ACTION_VIEW);
+                                intent.setDataAndType(Uri.parse("http://goo.gl/gEgYUd"), "image/*");
+                                mContext.startActivity(intent);
+                            }
+                        }
+                        case "doc":{
 
+                        }
+                        case "txt":{
+
+                        }
+
+                        default:
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setDataAndType(Uri.parse("http://goo.gl/gEgYUd"), "image/*");
+                            mContext.startActivity(intent);
+                    }
 
                     return true;
-                case R.id.cancellaprova:
+                case R.id.cancellaprovaallegato:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try {
                         ListaAllegati.remove(position);

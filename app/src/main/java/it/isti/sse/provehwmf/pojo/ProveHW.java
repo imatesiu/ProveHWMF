@@ -29,7 +29,10 @@ public class ProveHW  implements Serializable {
      *     The provaHW
      */
     public List<ProvaHW> getProvaHW() {
-        return provaHW;
+        if (provaHW!=null)
+            return provaHW;
+        else
+            return new ArrayList<>();
     }
 
     /**

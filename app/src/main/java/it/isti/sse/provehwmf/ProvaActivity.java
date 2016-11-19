@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
+import it.isti.sse.provehwmf.pojo.Allegati;
 import it.isti.sse.provehwmf.util.Utility;
 
 public class ProvaActivity extends AppCompatActivity {
@@ -122,7 +123,7 @@ public class ProvaActivity extends AppCompatActivity {
         test.add("b");
         test.add("c");
         test.add("b");test.add("b");test.add("b");
-        AllegatiAdapter adaptera = new AllegatiAdapter(this,test);
+        AllegatiAdapter adaptera = new AllegatiAdapter(this,test,new Allegati());
         rva.setAdapter(adaptera);
     }
 

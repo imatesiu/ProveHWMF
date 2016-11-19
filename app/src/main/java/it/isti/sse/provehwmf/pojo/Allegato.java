@@ -28,6 +28,14 @@ public class Allegato implements Serializable {
     @Expose
     private String tipo;
     /**
+     *
+     * (Required)
+     *
+     */
+    @SerializedName("Url")
+    @Expose
+    private String url;
+    /**
      * 
      * (Required)
      * 
@@ -157,6 +165,14 @@ public class Allegato implements Serializable {
      */
     public Note getNote() {
         return note;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     /**

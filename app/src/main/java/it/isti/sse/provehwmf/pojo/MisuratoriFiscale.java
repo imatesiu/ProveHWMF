@@ -29,7 +29,11 @@ public class MisuratoriFiscale implements Serializable {
      *     The misuratoreFiscale
      */
     public List<MisuratoreFiscale> getMisuratoreFiscale() {
-        return misuratoreFiscale;
+        if(misuratoreFiscale!=null) {
+            return misuratoreFiscale;
+        }else{
+            return new ArrayList<>();
+        }
     }
 
     /**

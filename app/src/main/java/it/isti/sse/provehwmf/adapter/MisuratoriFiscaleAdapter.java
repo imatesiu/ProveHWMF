@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import it.isti.sse.provehwmf.R;
+import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
 import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
 
 /**
@@ -39,7 +40,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
     }
 
     public static void setMyClickListener(MyClickListener myClickListener) {
-        myClickListener = myClickListener;
+        MisuratoriFiscaleAdapter.myClickListener = myClickListener;
     }
 
     @Override
@@ -80,7 +81,13 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
-                    myClickListener.onItemClick(position,LMF.getMisuratoreFiscale().get(position));
+                    MisuratoreFiscale MF = null;
+                    try{
+                      MF = LMF.getMisuratoreFiscale().get(position);
+                    }catch (IndexOutOfBoundsException | NullPointerException e){
+                        //TODO: gestisci eccezione
+                    }
+                    myClickListener.onItemClick(position,MF);
 
                     return true;
                 case R.id.cancellaprova:
@@ -101,7 +108,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
         public void onClick(View v) {
             PopupMenu popup = new PopupMenu(mContext, v, Gravity.RIGHT);
             MenuInflater inflater = popup.getMenuInflater();
-            inflater.inflate(R.menu.menu_allegato, popup.getMenu());
+            inflater.inflate(R.menu.menu_card, popup.getMenu());
             popup.setOnMenuItemClickListener(this);
             popup.show();
         }

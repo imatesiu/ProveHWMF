@@ -101,13 +101,9 @@ public class MainActivity extends AppCompatActivity
         test.add("b");test.add("b");test.add("b");
         MisuratoriFiscale LMF = new MisuratoriFiscale();
         MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(this,test,LMF);
-        rv.setAdapter(adapter);
+
 
         adapter.setMyClickListener(new MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-
-            }
 
             @Override
             public void onItemClick(int position, MisuratoreFiscale MF) {
@@ -116,7 +112,7 @@ public class MainActivity extends AppCompatActivity
                 startActivityForResult(i,550);
             }
         });
-
+        rv.setAdapter(adapter);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

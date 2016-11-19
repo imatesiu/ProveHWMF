@@ -25,6 +25,7 @@ import java.util.List;
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
 import it.isti.sse.provehwmf.adapter.MyClickListenerProve;
 import it.isti.sse.provehwmf.adapter.ProveAdapter;
+import it.isti.sse.provehwmf.pojo.Allegati;
 import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
 import it.isti.sse.provehwmf.pojo.ProvaHW;
 import it.isti.sse.provehwmf.pojo.ProveHW;
@@ -118,9 +119,10 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         test.add("b");
         test.add("b");
 
-        Bundle b = getIntent().getExtras();
+
         ProveHW PHW = null;
         try {
+            Bundle b = getIntent().getExtras();
             MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("MF");
             MF.getDitta();
             MF.getModello();
@@ -129,7 +131,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             PHW =  MF.getProveHW();
 
 
-        }catch (ClassCastException e){
+        }catch (NullPointerException | ClassCastException e){
 
         }
 
@@ -150,7 +152,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
-        AllegatiAdapter adaptera = new AllegatiAdapter(this, test);
+        AllegatiAdapter adaptera = new AllegatiAdapter(this, test, new Allegati());
         rva.setAdapter(adaptera);
 
 
