@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textViewPMFP"
-        android:layout_toEndOf="@+id/textViewPMFM"
+        android:layout_toEndOf="@+id/textViewPMFP"
         android:id="@+id/spinner" />
 
 
@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textViewPMFM"
         android:layout_toEndOf="@+id/textViewPMFM"
-        android:id="@+id/spinnerMMF" />
+        android:id="@+id/spinnerMMF"
+        android:layout_alignStart="@+id/spinnerTipoProva" />
 
     <Spinner
         android:layout_width="match_parent"
