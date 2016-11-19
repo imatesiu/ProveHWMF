@@ -65,6 +65,12 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         holder.position=position;
         //holder.onClick(holder.i);
 
+        holder.TestHW.setText("Prova: Alimentazione senza\\n Vincolo Fiscale");
+        holder.EsitoTestHW.setText("Stato Prove: Positivo");
+        holder.matricola.setText("Matricola Fiscale: 1255998-552");
+        holder.modello.setText("Modello: TIPO C");
+        holder.data.setText("Data: 12/12/2016 12:15:16");
+
         holder.overflow.setOnClickListener(new ProveAdapter.MyMenuItemClickListenerMF(position));
 
     }
