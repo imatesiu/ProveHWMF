@@ -21,7 +21,6 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -36,13 +35,13 @@ import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
 import it.isti.sse.provehwmf.pojo.ProvaHW;
 import it.isti.sse.provehwmf.util.JsonFactory;
 
-import static android.provider.Telephony.Mms.Part.FILENAME;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private MisuratoriFiscale LMF;
+    private MisuratoriFiscaleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity
 
         JsonFactory factory = new JsonFactory();
         LMF = factory.getMisuratoriFiscale();
-        MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(this,test,LMF);
+        adapter = new MisuratoriFiscaleAdapter(this,test,LMF);
 
 
         adapter.setMyClickListener(new MyClickListener() {
@@ -256,6 +255,7 @@ public class MainActivity extends AppCompatActivity
                         Bundle b = data.getExtras();
                         ProvaHW NPHW = (ProvaHW) b.getSerializable("newProva");
                         LMF.insert(NPHW);
+                        adapter.notifyDataSetChanged();
                         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                         Snackbar.make(drawer, "Prova Salvata", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();

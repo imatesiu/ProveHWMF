@@ -56,4 +56,13 @@ public class Allegati implements Serializable {
     public int size() {
         return getAllegato().size();
     }
+
+    public void merge(List<Allegato> allegati){
+        for (Allegato a: allegati) {
+            if(!getAllegato().contains(a)){
+                getAllegato().add(a);
+            }
+        }
+
+    }
 }

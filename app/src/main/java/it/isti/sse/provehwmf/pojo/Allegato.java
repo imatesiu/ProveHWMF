@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 @Generated("org.jsonschema2pojo")
-public class Allegato implements Serializable {
+public class Allegato implements Serializable, Comparable<Allegato> {
 
     /**
      * 
@@ -242,5 +242,15 @@ public class Allegato implements Serializable {
             }
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Allegato o) {
+
+        int time = this.getTime().compareTo(o.getTime());
+        if( time !=0 ){
+            return time;
+        }
+        return this.getNome().compareTo(o.getNome());
     }
 }

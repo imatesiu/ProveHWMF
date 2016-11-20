@@ -290,7 +290,7 @@ public class ProvaHW implements Serializable, Comparable<ProvaHW> {
     }
 
     public void merge(ProvaHW nphw) {
-        this.getAllegati().getAllegato().addAll(nphw.getAllegati().getAllegato());
+        this.getAllegati().merge(nphw.getAllegati().getAllegato());
         this.setEsito(nphw.getEsito());
     }
 }
