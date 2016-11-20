@@ -9,7 +9,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import java.io.Serializable;
 
 @Generated("org.jsonschema2pojo")
-public class ProvaHW implements Serializable {
+public class ProvaHW implements Serializable, Comparable<ProvaHW> {
 
     /**
      * 
@@ -268,6 +268,28 @@ public class ProvaHW implements Serializable {
     }
     public boolean isEdited(){
         return edited;
+    }
+
+    public boolean equals(Object other) {
+        if(other instanceof ProvaHW){
+            ProvaHW pp = (ProvaHW) other;
+            if(pp.getTimeStartPHW().equals(this.getTimeStartPHW()) && pp.getMatricola().equals(this.getMatricola()) && pp.getTipo().equals(this.getTipo()) ){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public int compareTo(ProvaHW o) {
+        //TODO impl it
+        return 0;
+    }
+
+    public void merge(ProvaHW nphw) {
+        this.getAllegati().getAllegato().addAll(nphw.getAllegati().getAllegato());
+        this.setEsito(nphw.getEsito());
     }
 }
 

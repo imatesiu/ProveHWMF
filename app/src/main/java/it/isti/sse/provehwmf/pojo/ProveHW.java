@@ -60,4 +60,17 @@ public class ProveHW  implements Serializable {
     public int size() {
         return getProvaHW().size();
     }
+
+    public void add(ProvaHW nphw) {
+        if(nphw.isEdited()){
+            for (ProvaHW p:
+                 getProvaHW()) {
+                if(p.equals(nphw)){
+                    p.merge(nphw);
+                }
+            }
+        }else{
+            getProvaHW().add(nphw);
+        }
+    }
 }

@@ -221,7 +221,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                     Bundle b = data.getExtras();
                     ProvaHW NPHW = (ProvaHW) b.getSerializable("newProva");
 
-                    PHW.getProvaHW().add(NPHW);
+                    PHW.add(NPHW);
                     allegati.getAllegato().addAll(NPHW.getAllegati().getAllegato());
                     CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
                     Snackbar.make(coordinatorLayout, "Test HW Salvato", Snackbar.LENGTH_LONG)
