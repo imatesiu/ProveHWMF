@@ -27,15 +27,15 @@ import it.isti.sse.provehwmf.pojo.ProveHW;
 public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolder> {
 
 
-    private List<String> ListaProve;
+    //private List<String> ListaProve;
     private Context mContext;
     private static MyClickListenerProve myClickListener;
     private ProveHW LPHW;
 
 
-    public ProveAdapter(Context mContext, List<String> Prove, ProveHW LPHW){
+    public ProveAdapter(Context mContext, /*List<String> Prove,*/ ProveHW LPHW){
         super();
-        this.ListaProve = Prove;
+       // this.ListaProve = Prove;
         this.mContext = mContext;
         this.LPHW = LPHW;
     }
@@ -103,9 +103,9 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
-                    ProvaHW rova = null;
+                    ProvaHW rova = new ProvaHW();
                     try {
-                        LPHW.getProvaHW().get(position);
+                        rova = LPHW.getProvaHW().get(position);
                     }catch (IndexOutOfBoundsException | NullPointerException e){
                         //TODO: gestisci eccezione
                     }
@@ -114,7 +114,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
                 case R.id.cancellaprova :
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try{
-                        ListaProve.remove(position);
+                        LPHW.remove(position);
                         notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception
@@ -139,7 +139,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
     @Override
     public int getItemCount() {
-        return ListaProve.size();
+        return LPHW.size();
     }
 
     public static class PHWViewHolder extends RecyclerView.ViewHolder implements View

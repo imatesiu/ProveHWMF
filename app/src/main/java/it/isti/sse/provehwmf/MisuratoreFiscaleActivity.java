@@ -54,9 +54,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         produttore = (EditText)findViewById(R.id.editText2);
         Matricola = (EditText)findViewById(R.id.editText3);
 
-        modello.setEnabled(false);
-        produttore.setEnabled(false);
-        Matricola.setEnabled(false);
+
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.MF_add_Prova1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,23 +138,21 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         rv.setLayoutManager(llm);
 
 
-        List<String> test = new ArrayList<>();
-        test.add("a");
-        test.add("b");
-        test.add("c");
-        test.add("b");
-        test.add("b");
-        test.add("b");
 
 
-        ProveHW PHW = null;
-        Allegati allegati = null;
+
+        ProveHW PHW = new ProveHW();
+        Allegati allegati = new Allegati();
         try {
             Bundle b = getIntent().getExtras();
             MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("MF");
-            MF.getDitta();
-            MF.getModello();
-            MF.getMatricola();
+            produttore.setText(MF.getDitta());
+            modello.setText(MF.getModello());
+            Matricola.setText(MF.getMatricola());
+
+            modello.setEnabled(false);
+            produttore.setEnabled(false);
+            Matricola.setEnabled(false);
 
             PHW =  MF.getProveHW();
 
@@ -171,7 +167,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         }
 
-        ProveAdapter adapter = new ProveAdapter(this, test,PHW);
+        ProveAdapter adapter = new ProveAdapter(this, PHW);
         rv.setAdapter(adapter);
         adapter.setMyClickListener(new MyClickListenerProve() {
             @Override

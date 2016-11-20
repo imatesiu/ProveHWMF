@@ -64,7 +64,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
             String m = LMF.getMisuratoreFiscale().get(position).getMatricola();
             holder.matricola.setText(m);
             String mod = LMF.getMisuratoreFiscale().get(position).getModello();
-            holder.modello.setText("Modello: T"+mod);
+            holder.modello.setText("Modello: "+mod);
             String e = LMF.getStatus(position);
             holder.EsitoTestHW.setText("Stato Prove: "+e);
             String d = LMF.getMisuratoreFiscale().get(position).getTimeMFStart();
@@ -106,7 +106,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
-                    MisuratoreFiscale MF = null;
+                    MisuratoreFiscale MF = new MisuratoreFiscale();
                     try{
                       MF = LMF.getMisuratoreFiscale().get(position);
                     }catch (IndexOutOfBoundsException | NullPointerException e){

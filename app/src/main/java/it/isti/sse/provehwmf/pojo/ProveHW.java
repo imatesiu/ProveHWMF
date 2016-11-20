@@ -51,4 +51,11 @@ public class ProveHW  implements Serializable {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public void remove(int position) {
+        getProvaHW().remove(position);
+    }
+
+    public int size() {
+        return getProvaHW().size();
+    }
 }

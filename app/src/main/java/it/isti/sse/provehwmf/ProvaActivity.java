@@ -23,6 +23,7 @@ import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
 import it.isti.sse.provehwmf.pojo.Allegati;
+import it.isti.sse.provehwmf.pojo.ProvaHW;
 import it.isti.sse.provehwmf.util.Utility;
 
 public class ProvaActivity extends AppCompatActivity {
@@ -152,8 +153,21 @@ public class ProvaActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
+        Allegati a = new Allegati();
+        try {
+            Bundle b = getIntent().getExtras();
+            ProvaHW TPHW = (ProvaHW) b.getSerializable("Prova");
+
+            a = TPHW.getAllegati();
+
+
+
+        }catch (NullPointerException | ClassCastException e){
+
+        }
+
         //TODO riempilista
-        AllegatiAdapter adaptera = new AllegatiAdapter(this,new Allegati());
+        AllegatiAdapter adaptera = new AllegatiAdapter(this,a);
         rva.setAdapter(adaptera);
     }
 
