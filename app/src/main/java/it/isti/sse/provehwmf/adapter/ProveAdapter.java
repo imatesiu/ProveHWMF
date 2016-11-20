@@ -58,6 +58,15 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         return pvh;
     }
 
+    private void init(PHWViewHolder holder, ProvaHW PHW){
+
+        holder.TestHW.setText("Prova: "+PHW.getTipo());
+        holder.EsitoTestHW.setText("Stato Prove: Positivo"+PHW.getEsito());
+        holder.matricola.setText("Matricola Fiscale: "+PHW.getMatricola());
+        holder.modello.setText("Modello: "+PHW.getModello());
+        holder.data.setText("Data: "+PHW.getTimeStartPHW());
+    }
+
     @Override
     public void onBindViewHolder(PHWViewHolder holder, int position) {
       //  holder.classe.setText(lorario.get(position).getClasse());
@@ -67,6 +76,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         LPHW.getProvaHW().get(position).getTimeStartPHW();*/
 
         holder.position=position;
+        //init(holder,LPHW.getProvaHW().get(position));
         //holder.onClick(holder.i);
 
         holder.TestHW.setText("Prova: Alimentazione senza\\n Vincolo Fiscale");

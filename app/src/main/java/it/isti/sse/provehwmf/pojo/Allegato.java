@@ -27,6 +27,10 @@ public class Allegato implements Serializable {
     @SerializedName("Tipo")
     @Expose
     private String tipo;
+
+    @SerializedName("Nome")
+    @Expose
+    private String nome;
     /**
      *
      * (Required)
@@ -213,4 +217,11 @@ public class Allegato implements Serializable {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void settNome(String nome) {
+        this.nome = nome;
+    }
 }

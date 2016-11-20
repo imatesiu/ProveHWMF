@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -56,11 +57,18 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         return pvh;
     }
 
+    private void init(PHWViewHolder holder,Allegato a){
+        holder.matricola.setText(a.getMatricola());
+        holder.nomeallegato.setText(a.getNome());
+        holder.tipoallegato.setText(a.getTipo());
+    }
+
     @Override
     public void onBindViewHolder(PHWViewHolder holder, int position) {
       //  holder.classe.setText(lorario.get(position).getClasse());
 
 
+        //init(holder,allegati.getAllegato().get(position));
         //holder.onClick(holder.i);
 
         holder.overflow.setOnClickListener(new AllegatiAdapter.MyMenuItemClickListenerMF(position));
@@ -146,11 +154,19 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         CardView cv;
         View i;
         public ImageView overflow;
+        public TextView matricola;
+        public TextView tipoallegato;
+        public TextView nomeallegato;
 
         PHWViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.card_viewAllegatoTestHW);
             overflow = (ImageView) itemView.findViewById(R.id.overflow);
+
+            matricola = (TextView) itemView.findViewById(R.id.textView9);
+            tipoallegato = (TextView) itemView.findViewById(R.id.textView12);
+            nomeallegato = (TextView) itemView.findViewById(R.id.textView10);
+
             i=itemView;
         }
        /* PHWViewHolder(View itemView) {

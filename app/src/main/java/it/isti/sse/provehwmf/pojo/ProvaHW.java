@@ -19,6 +19,10 @@ public class ProvaHW implements Serializable {
     @SerializedName("Matricola")
     @Expose
     private String matricola;
+
+    @SerializedName("Modello")
+    @Expose
+    private String modello;
     /**
      * 
      * (Required)
@@ -232,6 +236,14 @@ public class ProvaHW implements Serializable {
      */
     public void setAllegati(Allegati allegati) {
         this.allegati = allegati;
+    }
+
+    public String getModello() {
+        return modello;
+    }
+
+    public void setModello(String modello) {
+        this.modello = modello;
     }
 
     @Override
