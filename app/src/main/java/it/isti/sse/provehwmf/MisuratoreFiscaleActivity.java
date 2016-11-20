@@ -177,7 +177,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             produttore.setEnabled(false);
             Matricola.setEnabled(false);
 
-           // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+          // InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
             //imm.hideSoftInputFromWindow( getWindow().getCurrentFocus().getWindowToken(),  InputMethodManager.HIDE_NOT_ALWAYS);
 

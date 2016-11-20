@@ -121,7 +121,7 @@ public class ProvaActivity extends AppCompatActivity {
                // startActivity(i);
                 Intent i = new Intent(ProvaActivity.this, AllegatoActivity.class);
                 i.putExtra("MatricolaMF",Matricola.getText().toString());
-                i.putExtra("TipoProva",tipoprova.getSelectedItemPosition());
+                i.putExtra("TipoProva",String.valueOf(tipoprova.getSelectedItemPosition()));
                 // i.putExtra("key","value");
                 startActivityForResult(i, 190);
             }
