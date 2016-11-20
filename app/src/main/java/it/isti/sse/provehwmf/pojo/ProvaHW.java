@@ -27,6 +27,10 @@ public class ProvaHW implements Serializable {
     @SerializedName("Tipo")
     @Expose
     private String tipo;
+
+    @SerializedName("Esito")
+    @Expose
+    private Esito esito;
     /**
      * 
      * (Required)
@@ -110,6 +114,14 @@ public class ProvaHW implements Serializable {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public void setEsito(Esito esito) {
+        this.esito = esito;
+    }
+
+    public Esito getEsito() {
+        return this.esito;
     }
 
     /**
@@ -228,3 +240,4 @@ public class ProvaHW implements Serializable {
     }
 
 }
+

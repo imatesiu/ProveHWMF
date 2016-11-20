@@ -36,6 +36,16 @@ public class MisuratoriFiscale implements Serializable {
         }
     }
 
+    public String getStatus(int misutatore){
+        try {
+            MisuratoreFiscale MF = getMisuratoreFiscale().get(misutatore);
+            return MF.getStatus();
+        }catch (NullPointerException e){
+            return "Errore";
+        }
+
+    }
+
     /**
      * 
      * (Required)

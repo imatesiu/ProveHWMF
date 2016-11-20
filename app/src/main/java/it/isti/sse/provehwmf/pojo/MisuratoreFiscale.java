@@ -252,6 +252,33 @@ public class MisuratoreFiscale implements Serializable {
         this.proveHW = proveHW;
     }
 
+    public String getStatus(){
+        try {
+
+            boolean f = true;
+            for (ProvaHW prova : getProveHW().getProvaHW()){
+                Esito e  = prova.getEsito();
+                if(e == e.Incorso){
+                    return e.Incorso.toString();
+                }
+                if(e == e.Negativo){
+                    return e.Negativo.toString();
+                }
+                if(e != e.Positivo){
+                    f = false;
+                }
+            }
+            if(f){
+                return Esito.Positivo.toString();
+            }else{
+                return "Incerto";
+            }
+        }catch (NullPointerException e){
+            return "Errore";
+        }
+
+    }
+
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);

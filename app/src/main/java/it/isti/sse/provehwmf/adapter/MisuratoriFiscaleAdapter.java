@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.lang.ObjectUtils;
+
 import java.util.List;
 
 import it.isti.sse.provehwmf.R;
@@ -55,6 +57,21 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_misuratore_fiscale, parent, false);
         MFViewHolder pvh = new MFViewHolder(v);
         return pvh;
+    }
+
+    private void init(MFViewHolder holder,int position, MisuratoriFiscale LMF){
+        try {
+            String m = LMF.getMisuratoreFiscale().get(position).getMatricola();
+            holder.matricola.setText(m);
+            String mod = LMF.getMisuratoreFiscale().get(position).getModello();
+            holder.modello.setText("Modello: T"+mod);
+            String e = LMF.getStatus(position);
+            holder.EsitoTestHW.setText("Stato Prove: "+e);
+            String d = LMF.getMisuratoreFiscale().get(position).getTimeMFStart();
+            holder.data.setText("Data: "+d);
+        }catch (NullPointerException e){
+            //TODO:
+        }
     }
 
     @Override
