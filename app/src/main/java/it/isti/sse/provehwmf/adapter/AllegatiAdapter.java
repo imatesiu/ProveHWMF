@@ -92,21 +92,32 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                     try {
                          Allegato allegato = allegati.getAllegato().get(position);
                         String tipo = allegato.getTipo();
+                        String url = allegato.getUrl();
                         String dati = allegato.getDati();
                         switch (tipo) {
-                            case "jpg": {
-                                if (dati != null) {
+                            case "JPG": {
+                                if (url != null) {
                                     Intent intent = new Intent();
                                     intent.setAction(Intent.ACTION_VIEW);
-                                    intent.setDataAndType(Uri.parse("http://goo.gl/gEgYUd"), "image/*");
+                                    intent.setDataAndType(Uri.parse(url), "image/*");
                                     mContext.startActivity(intent);
                                 }
                             }
-                            case "doc": {
-
+                            case "FILE": {
+                                if (url != null) {
+                                    Intent intent = new Intent();
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    intent.setDataAndType(Uri.parse(url), "application/pdf");
+                                    mContext.startActivity(intent);
+                                }
                             }
-                            case "txt": {
-
+                            case "NOTE": {
+                                if (url != null) {
+                                    Intent intent = new Intent();
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    intent.setDataAndType(Uri.parse(url), "text/plain");
+                                    mContext.startActivity(intent);
+                                }
                             }
 
                             default:

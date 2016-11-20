@@ -183,6 +183,8 @@ public class ProvaActivity extends AppCompatActivity {
         //TODO riempilista
         AllegatiAdapter adaptera = new AllegatiAdapter(this,allegati);
         rva.setAdapter(adaptera);
+
+
     }
 
     @Override

@@ -94,7 +94,9 @@ public class MainActivity extends AppCompatActivity
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menu);
                 menuRed.close(false);
                 Intent i = new Intent(MainActivity.this, AllegatoActivity.class);
-                // i.putExtra("key","value");
+                ArrayList<String> ListMF = LMF.getMatricoleFiscali();
+                i.putExtra("ListaMatricoleMF",ListMF);
+                //i.putExtra("key","value");
                 startActivityForResult(i,530);
                 //startActivity(i);
             }
