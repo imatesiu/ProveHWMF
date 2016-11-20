@@ -33,6 +33,7 @@ import it.isti.sse.provehwmf.adapter.MisuratoriFiscaleAdapter;
 import it.isti.sse.provehwmf.adapter.MyClickListener;
 import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
 import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
+import it.isti.sse.provehwmf.pojo.ProvaHW;
 import it.isti.sse.provehwmf.util.JsonFactory;
 
 import static android.provider.Telephony.Mms.Part.FILENAME;
@@ -40,6 +41,8 @@ import static android.provider.Telephony.Mms.Part.FILENAME;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private MisuratoriFiscale LMF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity
         test.add("b");test.add("b");test.add("b");
 
         JsonFactory factory = new JsonFactory();
-        MisuratoriFiscale LMF = factory.getMisuratoriFiscale();
+        LMF = factory.getMisuratoriFiscale();
         MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(this,test,LMF);
 
 
@@ -223,9 +226,20 @@ public class MainActivity extends AppCompatActivity
 
         if (requestCode == 550) { //MF
             if (resultCode == Activity.RESULT_OK) {
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                Snackbar.make(drawer, "Salvato MF", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                try {
+                    Bundle b = data.getExtras();
+                    MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("newMF");
+                    LMF.getMisuratoreFiscale().add(MF);
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    Snackbar.make(drawer, "Salvato MF", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+                }catch (NullPointerException | ClassCastException e){
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    Snackbar.make(drawer, "Nessun MF Salvato", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
                 //String result = data.getStringExtra("result");
             }
             if (resultCode == Activity.RESULT_CANCELED) {
@@ -236,9 +250,16 @@ public class MainActivity extends AppCompatActivity
         }else{
             if (requestCode == 540) { //Prova
                 if(resultCode == Activity.RESULT_OK){
-                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                    Snackbar.make(drawer, "Prova Salvata", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    try {
+                        Bundle b = data.getExtras();
+                        ProvaHW NPHW = (ProvaHW) b.getSerializable("newProva");
+                        LMF.insert(NPHW);
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        Snackbar.make(drawer, "Prova Salvata", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }catch (NullPointerException | ClassCastException e){
+
+                    }
                   //  String result=data.getStringExtra("result");
                 }
                 if (resultCode == Activity.RESULT_CANCELED) {

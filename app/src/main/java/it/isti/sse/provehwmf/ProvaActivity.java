@@ -18,7 +18,9 @@ import android.widget.Spinner;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
 import it.isti.sse.provehwmf.pojo.Allegati;
@@ -33,6 +35,7 @@ public class ProvaActivity extends AppCompatActivity {
     private EditText Matricola;
     private Spinner tipoprova;
     private Spinner esito;
+    private  Allegati allegati;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +124,28 @@ public class ProvaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
-                setResult(Activity.RESULT_OK);//, intent);
+                ProvaHW t = new ProvaHW();
+
+
+                String model = modello.getText().toString();
+                t.setModello(model);
+                t.setMatricola(Matricola.getText().toString());
+
+                t.setTipo(tipoprova.getSelectedItem().toString());
+                Esito e = Esito.values()[esito.getSelectedItemPosition()];
+
+                t.setEsito(e);
+
+               t.setAllegati(allegati);
+                String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
+                t.setTimeStartPHW(timeStamp);
+
+
+
+              //  setResult(Activity.RESULT_OK);
+
+
+                setResult(Activity.RESULT_OK,getIntent().putExtra("newProva", t));//, intent);
                 finish();
             }
 
@@ -153,12 +177,12 @@ public class ProvaActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
-        Allegati a = new Allegati();
+        allegati = new Allegati();
         try {
             Bundle b = getIntent().getExtras();
             ProvaHW TPHW = (ProvaHW) b.getSerializable("Prova");
 
-            a = TPHW.getAllegati();
+            allegati = TPHW.getAllegati();
             ArrayList<String> list = new ArrayList<String>();
             ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
                     android.R.layout.simple_spinner_item, list);
@@ -187,7 +211,7 @@ public class ProvaActivity extends AppCompatActivity {
         }
 
         //TODO riempilista
-        AllegatiAdapter adaptera = new AllegatiAdapter(this,a);
+        AllegatiAdapter adaptera = new AllegatiAdapter(this,allegati);
         rva.setAdapter(adaptera);
     }
 

@@ -20,7 +20,9 @@ import com.github.clans.fab.FloatingActionMenu;
 
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
@@ -42,6 +44,8 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
     private EditText modello;
     private EditText produttore;
     private EditText Matricola;
+    ProveHW PHW;
+    Allegati allegati;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +110,18 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
-                setResult(Activity.RESULT_OK);//, intent);
+                MisuratoreFiscale MF = new MisuratoreFiscale();
+                String model = modello.getText().toString();
+                MF.setModello(model);
+                MF.setMatricola(Matricola.getText().toString());
+                MF.setDitta(produttore.getText().toString());
+                MF.setProveHW(PHW);
+                String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
+                MF.setTimeMFStart(timeStamp);
+
+
+
+                setResult(Activity.RESULT_OK, getIntent().putExtra("newMF", MF));
                 finish();
             }
 
@@ -141,8 +156,8 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
 
 
-        ProveHW PHW = new ProveHW();
-        Allegati allegati = new Allegati();
+        PHW = new ProveHW();
+        allegati = new Allegati();
         try {
             Bundle b = getIntent().getExtras();
             MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("MF");
@@ -198,9 +213,24 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         if (requestCode == 50) { //prova
             if (resultCode == Activity.RESULT_OK) {
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
-                Snackbar.make(coordinatorLayout, "Test HW Salvato", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                try {
+                    Bundle b = data.getExtras();
+                    ProvaHW NPHW = (ProvaHW) b.getSerializable("newProva");
+
+                    PHW.getProvaHW().add(NPHW);
+                    allegati.getAllegato().addAll(NPHW.getAllegati().getAllegato());
+                    CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
+                    Snackbar.make(coordinatorLayout, "Test HW Salvato", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+
+
+
+                }catch (NullPointerException | ClassCastException e){
+                    CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
+                    Snackbar.make(coordinatorLayout, "Nessun Test HW salvato", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);

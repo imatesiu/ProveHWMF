@@ -10,4 +10,6 @@ public enum Esito {Incorso (1), Positivo(2), Negativo(3), Sospeso(4), Incerto(5)
 
     Esito(int i) {
     }
+
+
 };

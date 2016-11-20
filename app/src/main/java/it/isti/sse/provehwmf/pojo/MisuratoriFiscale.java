@@ -65,4 +65,18 @@ public class MisuratoriFiscale implements Serializable {
     public int size() {
        return getMisuratoreFiscale().size();
     }
+
+
+    public boolean insert(ProvaHW nphw) {
+        String Matricola = nphw.getMatricola();
+        for (MisuratoreFiscale MF:
+             getMisuratoreFiscale()) {
+            if(MF.getMatricola().equals(Matricola)){
+                MF.getProveHW().getProvaHW().add(nphw);
+                return true;
+            }
+        }
+        return false;
+
+    }
 }
