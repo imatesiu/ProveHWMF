@@ -271,11 +271,11 @@ public class AllegatoActivity extends AppCompatActivity {
                 matricole.setEnabled(false);
 
                 int tp = (int) b.getInt("TipoProva");
-                if(tp>0) {
+                
                     tipoprova.setSelection(tp+1);
 
                     tipoprova.setEnabled(false);
-                }
+
 
 
             }
