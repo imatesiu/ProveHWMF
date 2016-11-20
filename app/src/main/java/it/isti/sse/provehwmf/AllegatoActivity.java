@@ -270,9 +270,9 @@ public class AllegatoActivity extends AppCompatActivity {
                 matricole.setSelection(0);
                 matricole.setEnabled(false);
 
-                TipoProve tp = (TipoProve) b.getSerializable("TipoProva");
-                if(tp!=null) {
-                    tipoprova.setSelection(tp.ordinal()+1);
+                int tp = (int) b.getInt("TipoProva");
+                if(tp>0) {
+                    tipoprova.setSelection(tp+1);
 
                     tipoprova.setEnabled(false);
                 }
