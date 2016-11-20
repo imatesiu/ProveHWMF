@@ -150,6 +150,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
 
         ProveHW PHW = null;
+        Allegati allegati = null;
         try {
             Bundle b = getIntent().getExtras();
             MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("MF");
@@ -158,6 +159,12 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             MF.getMatricola();
 
             PHW =  MF.getProveHW();
+
+            allegati = new Allegati();
+            for (ProvaHW p : PHW.getProvaHW()){
+                allegati.getAllegato().addAll(p.getAllegati().getAllegato());
+            }
+
 
 
         }catch (NullPointerException | ClassCastException e){
@@ -181,7 +188,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
-        AllegatiAdapter adaptera = new AllegatiAdapter(this, test, new Allegati());
+        AllegatiAdapter adaptera = new AllegatiAdapter(this, allegati);
         rva.setAdapter(adaptera);
 
 

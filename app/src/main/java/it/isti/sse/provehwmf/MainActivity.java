@@ -33,6 +33,7 @@ import it.isti.sse.provehwmf.adapter.MisuratoriFiscaleAdapter;
 import it.isti.sse.provehwmf.adapter.MyClickListener;
 import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
 import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
+import it.isti.sse.provehwmf.util.JsonFactory;
 
 import static android.provider.Telephony.Mms.Part.FILENAME;
 
@@ -109,7 +110,8 @@ public class MainActivity extends AppCompatActivity
         test.add("c");
         test.add("b");test.add("b");test.add("b");
 
-        MisuratoriFiscale LMF = new MisuratoriFiscale();
+        JsonFactory factory = new JsonFactory();
+        MisuratoriFiscale LMF = factory.getMisuratoriFiscale();
         MisuratoriFiscaleAdapter adapter = new MisuratoriFiscaleAdapter(this,test,LMF);
 
 

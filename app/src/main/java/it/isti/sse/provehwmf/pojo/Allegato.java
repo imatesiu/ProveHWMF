@@ -221,7 +221,7 @@ public class Allegato implements Serializable {
         return nome;
     }
 
-    public void settNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 }

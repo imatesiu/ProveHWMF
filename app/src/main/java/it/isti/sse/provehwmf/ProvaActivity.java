@@ -152,12 +152,8 @@ public class ProvaActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
-        List<String> test = new ArrayList<>();
-        test.add("a");
-        test.add("b");
-        test.add("c");
-        test.add("b");test.add("b");test.add("b");
-        AllegatiAdapter adaptera = new AllegatiAdapter(this,test,new Allegati());
+        //TODO riempilista
+        AllegatiAdapter adaptera = new AllegatiAdapter(this,new Allegati());
         rva.setAdapter(adaptera);
     }
 

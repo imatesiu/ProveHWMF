@@ -51,4 +51,7 @@ public class Allegati implements Serializable {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public int size() {
+        return getAllegato().size();
+    }
 }

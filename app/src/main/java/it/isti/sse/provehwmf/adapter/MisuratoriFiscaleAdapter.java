@@ -81,10 +81,11 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
         LMF.getMisuratoreFiscale().get(position).getModello();
         LMF.getMisuratoreFiscale().get(position).getTimeMFStart();*/
 
-        holder.matricola.setText("00000000000000000000000");
+       /* holder.matricola.setText("000000000000000000000");
         holder.modello.setText("Modello: TIPO C");
         holder.EsitoTestHW.setText("Stato Prove: In Corso");
-        holder.data.setText("Data: 12/12/2016 12:15:16");
+        holder.data.setText("Data: 12/12/2016 12:15:16");*/
+        init(holder,position,LMF);
         //holder.onClick(holder.i);
 
         holder.overflow.setOnClickListener(new MisuratoriFiscaleAdapter.MyMenuItemClickListenerMF(position));
@@ -140,7 +141,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
 
     @Override
     public int getItemCount() {
-        return ListaMisuratoreFiscale.size();
+        return LMF.size();
     }
 
     public static class MFViewHolder extends RecyclerView.ViewHolder implements View

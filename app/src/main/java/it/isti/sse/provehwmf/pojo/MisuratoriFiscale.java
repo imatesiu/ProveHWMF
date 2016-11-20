@@ -62,4 +62,7 @@ public class MisuratoriFiscale implements Serializable {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public int size() {
+       return getMisuratoreFiscale().size();
+    }
 }

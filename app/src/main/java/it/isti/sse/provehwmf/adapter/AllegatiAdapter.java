@@ -30,14 +30,14 @@ import it.isti.sse.provehwmf.pojo.Allegato;
 public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWViewHolder> {
 
 
-    private List<String> ListaAllegati;
+    //private List<String> ListaAllegati;
     private Allegati allegati;
     private Context mContext;
 
 
-    public AllegatiAdapter(Context lContext, List<String> ListaAllegati, Allegati allegati){
+    public AllegatiAdapter(Context lContext, /*List<String> ListaAllegati,*/ Allegati allegati){
         super();
-        this.ListaAllegati = ListaAllegati;
+        //this.ListaAllegati = ListaAllegati;
         this.mContext = lContext;
         this.allegati = allegati;
     }
@@ -68,7 +68,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
       //  holder.classe.setText(lorario.get(position).getClasse());
 
 
-        //init(holder,allegati.getAllegato().get(position));
+        init(holder,allegati.getAllegato().get(position));
         //holder.onClick(holder.i);
 
         holder.overflow.setOnClickListener(new AllegatiAdapter.MyMenuItemClickListenerMF(position));
@@ -122,7 +122,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                 case R.id.cancellaprovaallegato:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try {
-                        ListaAllegati.remove(position);
+                        allegati.getAllegato().remove(position);
                         notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception
@@ -145,7 +145,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
 
     @Override
     public int getItemCount() {
-        return ListaAllegati.size();
+        return allegati.size();
     }
 
     public static class PHWViewHolder extends RecyclerView.ViewHolder /* implements View
