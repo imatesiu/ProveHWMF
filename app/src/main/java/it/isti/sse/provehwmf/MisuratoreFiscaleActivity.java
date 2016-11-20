@@ -81,7 +81,9 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuMF);
                 menuRed.close(false);
                 Intent i = new Intent(MisuratoreFiscaleActivity.this, ProvaActivity.class);
-                //i.putExtra("key","value");
+                i.putExtra("matricola".toString(),Matricola.getText().toString());
+                i.putExtra("modello".toString(),modello.getText().toString());
+
                 startActivityForResult(i, 50);
 
             }

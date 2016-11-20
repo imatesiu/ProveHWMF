@@ -24,7 +24,7 @@
 
             card_view:cardCornerRadius="4dp"
 
-            card_view:cardBackgroundColor="@android:color/holo_red_light"
+            card_view:cardBackgroundColor="@android:color/holo_blue_dark"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_alignParentTop="true"

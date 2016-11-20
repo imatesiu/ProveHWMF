@@ -178,6 +178,37 @@ public class ProvaActivity extends AppCompatActivity {
         rva.setLayoutManager(llma);
 
         allegati = new Allegati();
+        setInit(allegati);
+
+        //TODO riempilista
+        AllegatiAdapter adaptera = new AllegatiAdapter(this,allegati);
+        rva.setAdapter(adaptera);
+    }
+
+    @Override
+    public void onBackPressed() {
+        // When the user hits the back button set the resultCode
+        // to Activity.RESULT_CANCELED to indicate a failure
+        setResult(Activity.RESULT_CANCELED);
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 190) { //allegato
+            if (resultCode == Activity.RESULT_OK) {
+               // String result = data.getStringExtra("result");
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.proveactivity);
+                Snackbar.make(coordinatorLayout, "Nessun Allegato Salvato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
+    }
+
+    public void setInit(Allegati init) {
         try {
             Bundle b = getIntent().getExtras();
             ProvaHW TPHW = (ProvaHW) b.getSerializable("Prova");
@@ -210,32 +241,28 @@ public class ProvaActivity extends AppCompatActivity {
 
         }
 
-        //TODO riempilista
-        AllegatiAdapter adaptera = new AllegatiAdapter(this,allegati);
-        rva.setAdapter(adaptera);
-    }
+        try {
+            Bundle b = getIntent().getExtras();
+            String matricola = (String) b.getString("matricola");
+            String model = (String) b.getString("modello");
 
-    @Override
-    public void onBackPressed() {
-        // When the user hits the back button set the resultCode
-        // to Activity.RESULT_CANCELED to indicate a failure
-        setResult(Activity.RESULT_CANCELED);
-        super.onBackPressed();
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == 190) { //allegato
-            if (resultCode == Activity.RESULT_OK) {
-               // String result = data.getStringExtra("result");
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.proveactivity);
-                Snackbar.make(coordinatorLayout, "Nessun Allegato Salvato", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+
+
+
+
+            Matricola.setText(matricola);
+
+            modello.setEnabled(false);
+            Matricola.setEnabled(false);
+            tipoprova.setEnabled(true);
+            esito.setEnabled(true);
+            modello.setText(model);
+
+
+        }catch (NullPointerException | ClassCastException e){
+
         }
     }
-
 }
