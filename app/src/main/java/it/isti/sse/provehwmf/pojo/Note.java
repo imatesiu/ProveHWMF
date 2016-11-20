@@ -104,7 +104,11 @@ public class Note implements Serializable {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return "Note{" +
+                "matricola='" + matricola + '\'' +
+                ", time='" + time + '\'' +
+                ", testo='" + testo + '\'' +
+                '}';
     }
 
 }

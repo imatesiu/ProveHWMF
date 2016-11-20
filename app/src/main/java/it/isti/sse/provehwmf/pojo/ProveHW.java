@@ -48,7 +48,9 @@ public class ProveHW  implements Serializable {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return "ProveHW{" +
+                "provaHW=" + provaHW +
+                '}';
     }
 
     public void remove(int position) {

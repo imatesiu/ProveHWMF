@@ -24,6 +24,7 @@ import java.util.Date;
 
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
 import it.isti.sse.provehwmf.pojo.Allegati;
+import it.isti.sse.provehwmf.pojo.Allegato;
 import it.isti.sse.provehwmf.pojo.Esito;
 import it.isti.sse.provehwmf.pojo.ProvaHW;
 import it.isti.sse.provehwmf.pojo.TipoProve;
@@ -36,6 +37,8 @@ public class ProvaActivity extends AppCompatActivity {
     private Spinner tipoprova;
     private Spinner esito;
     private  Allegati allegati;
+    private ProvaHW TPHW;
+    private boolean edited = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +135,7 @@ public class ProvaActivity extends AppCompatActivity {
                 String model = modello.getText().toString();
                 t.setModello(model);
                 t.setMatricola(Matricola.getText().toString());
-
+                t.setEdited(edited);
                 t.setTipo(tipoprova.getSelectedItem().toString());
                 Esito e = Esito.values()[esito.getSelectedItemPosition()];
 
@@ -203,6 +206,12 @@ public class ProvaActivity extends AppCompatActivity {
         if (requestCode == 190) { //allegato
             if (resultCode == Activity.RESULT_OK) {
                // String result = data.getStringExtra("result");
+                Bundle b = getIntent().getExtras();
+                Allegato all = (Allegato) b.getSerializable("newAllegato");
+                TPHW.getAllegati().getAllegato().add(all);
+                allegati.getAllegato().add(all);
+                edited = true;
+
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.proveactivity);
@@ -215,7 +224,7 @@ public class ProvaActivity extends AppCompatActivity {
     public void setInit(Allegati init) {
         try {
             Bundle b = getIntent().getExtras();
-            ProvaHW TPHW = (ProvaHW) b.getSerializable("Prova");
+            TPHW = (ProvaHW) b.getSerializable("Prova");
             if(TPHW!=null) {
                 allegati = TPHW.getAllegati();
                 ArrayList<String> list = new ArrayList<String>();

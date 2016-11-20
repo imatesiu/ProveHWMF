@@ -48,7 +48,9 @@ public class Allegati implements Serializable {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return "Allegati{" +
+                "allegato=" + allegato +
+                '}';
     }
 
     public int size() {

@@ -214,7 +214,16 @@ public class Allegato implements Serializable {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return "Allegato{" +
+                "matricola='" + matricola + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", nome='" + nome + '\'' +
+                ", url='" + url + '\'' +
+                ", dati='" + dati + '\'' +
+                ", time='" + time + '\'' +
+                ", note=" + note +
+                ", userid='" + userid + '\'' +
+                '}';
     }
 
     public String getNome() {
@@ -224,4 +233,6 @@ public class Allegato implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+
 }

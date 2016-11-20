@@ -141,7 +141,7 @@ public class AllegatoActivity extends AppCompatActivity {
                 Uri uri = data.getData();
 
                 Allegato a = createAllegato(new File(uri.getPath()),"FILE");
-                Intent i = getIntent().putExtra("newAllegatoFile",a);
+                Intent i = getIntent().putExtra("newAllegato",a);
                 //TODO:caricafile
                 setResult(Activity.RESULT_OK,i);//, intent);
                 finish();
@@ -159,7 +159,7 @@ public class AllegatoActivity extends AppCompatActivity {
                 Snackbar.make(coordinatorLayout, "Nota Salvata", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Allegato a = createAllegato(data,"NOTA");
-                Intent i = getIntent().putExtra("newAllegatoNote",a);
+                Intent i = getIntent().putExtra("newAllegato",a);
 
                 setResult(Activity.RESULT_OK,i);//, intent);
                 finish();

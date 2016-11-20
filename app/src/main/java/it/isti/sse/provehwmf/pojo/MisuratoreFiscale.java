@@ -281,7 +281,16 @@ public class MisuratoreFiscale implements Serializable {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return "MisuratoreFiscale{" +
+                "nome='" + nome + '\'' +
+                ", modello='" + modello + '\'' +
+                ", ditta='" + ditta + '\'' +
+                ", matricola='" + matricola + '\'' +
+                ", timeMFStart='" + timeMFStart + '\'' +
+                ", timeMFEnd='" + timeMFEnd + '\'' +
+                ", note=" + note +
+                ", proveHW=" + proveHW +
+                '}';
     }
 
 }

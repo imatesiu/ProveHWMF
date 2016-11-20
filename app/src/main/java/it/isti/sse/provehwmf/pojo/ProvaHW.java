@@ -75,6 +75,7 @@ public class ProvaHW implements Serializable {
     @SerializedName("Allegati")
     @Expose
     private Allegati allegati;
+    private boolean edited;
 
     /**
      * 
@@ -248,8 +249,25 @@ public class ProvaHW implements Serializable {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return "ProvaHW{" +
+                "matricola='" + matricola + '\'' +
+                ", modello='" + modello + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", esito=" + esito +
+                ", timeStartPHW='" + timeStartPHW + '\'' +
+                ", timeEndPHW='" + timeEndPHW + '\'' +
+                ", userid='" + userid + '\'' +
+                ", note=" + note +
+                ", allegati=" + allegati +
+                ", edited=" + edited +
+                '}';
     }
 
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+    public boolean isEdited(){
+        return edited;
+    }
 }
 
