@@ -17,4 +17,32 @@ public enum TipoProve {
 
     TipoProve(int i) {
     }
+
+    public static TipoProve get(String tipo) {
+        if (tipo.equals("Termiche")) {
+            return Termiche;
+        }
+        if (tipo.equals("DisturbiElettromagnetici")) {
+            return DisturbiElettromagnetici;
+        }
+        if (tipo.equals("Disturbi Elettromagnetici")) {
+            return DisturbiElettromagnetici;
+        }
+        if (tipo.equals("Impermeabilità")) {
+            return Impermeabilita;
+        }
+        if (tipo.equals("Vibrazione")) {
+            return Vibrazione;
+        }
+        if (tipo.equals("Disturbi Condotti")) {
+            return DisturbiCondotti;
+        }
+        if (tipo.equals("Batteria Sotto Protezione SF")) {
+            return BatteriaSottoProtezioneSF;
+        }
+        if (tipo.equals("Alimentazione Senza Vincolo Fiscale")) {
+            return AlimentazioneSenzaVincoloFiscale;
+        }
+        return ScaricheElettrostatiche;
+    }
 }

@@ -270,10 +270,12 @@ public class ProvaHW implements Serializable, Comparable<ProvaHW> {
         return edited;
     }
 
+    @Override
     public boolean equals(Object other) {
         if(other instanceof ProvaHW){
             ProvaHW pp = (ProvaHW) other;
-            if(pp.getTimeStartPHW().equals(this.getTimeStartPHW()) && pp.getMatricola().equals(this.getMatricola()) && pp.getTipo().equals(this.getTipo()) ){
+            boolean flag = TipoProve.get(pp.getTipo()).equals(TipoProve.get(this.getTipo()));
+            if(pp.getTimeStartPHW().equals(this.getTimeStartPHW()) && pp.getMatricola().equals(this.getMatricola()) && flag){
                 return true;
             }
         }

@@ -44,8 +44,9 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
     private EditText modello;
     private EditText produttore;
     private EditText Matricola;
-    ProveHW PHW;
-    Allegati allegati;
+    private ProveHW PHW;
+    private Allegati allegati;
+    private ProveAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,7 +187,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         }
 
-        ProveAdapter adapter = new ProveAdapter(this, PHW);
+        adapter = new ProveAdapter(this, PHW);
         rv.setAdapter(adapter);
         adapter.setMyClickListener(new MyClickListenerProve() {
             @Override
@@ -222,6 +223,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                     ProvaHW NPHW = (ProvaHW) b.getSerializable("newProva");
 
                     PHW.add(NPHW);
+                    adapter.notifyDataSetChanged();
                     allegati.getAllegato().addAll(NPHW.getAllegati().getAllegato());
                     CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
                     Snackbar.make(coordinatorLayout, "Test HW Salvato", Snackbar.LENGTH_LONG)

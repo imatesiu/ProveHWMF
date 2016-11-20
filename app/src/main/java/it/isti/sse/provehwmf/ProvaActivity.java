@@ -37,7 +37,7 @@ public class ProvaActivity extends AppCompatActivity {
     private Spinner tipoprova;
     private Spinner esito;
     private  Allegati allegati;
-    private ProvaHW TPHW;
+    private ProvaHW TPHW = new ProvaHW();
     private boolean edited = false;
 
     @Override
@@ -129,28 +129,34 @@ public class ProvaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
-                ProvaHW t = new ProvaHW();
+                //ProvaHW t = new ProvaHW();
 
 
                 String model = modello.getText().toString();
-                t.setModello(model);
-                t.setMatricola(Matricola.getText().toString());
-                t.setEdited(edited);
-                t.setTipo(tipoprova.getSelectedItem().toString());
+                TPHW.setModello(model);
+                TPHW.setMatricola(Matricola.getText().toString());
+                TPHW.setEdited(edited);
+                TPHW.setTipo(tipoprova.getSelectedItem().toString());
                 Esito e = Esito.values()[esito.getSelectedItemPosition()];
 
-                t.setEsito(e);
+                TPHW.setEsito(e);
 
-               t.setAllegati(allegati);
+                TPHW.setAllegati(allegati);
                 String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
-                t.setTimeStartPHW(timeStamp);
+                if(!edited)
+                    TPHW.setTimeStartPHW(timeStamp);
+
+
+                TPHW.setTimeEndPHW(timeStamp);
+
+
 
 
 
               //  setResult(Activity.RESULT_OK);
 
 
-                setResult(Activity.RESULT_OK,getIntent().putExtra("newProva", t));//, intent);
+                setResult(Activity.RESULT_OK,getIntent().putExtra("newProva", TPHW));//, intent);
                 finish();
             }
 
@@ -167,10 +173,9 @@ public class ProvaActivity extends AppCompatActivity {
                     Matricola.setEnabled(false);
                     esito.setEnabled(false);
                 }else {
-                    tipoprova.setEnabled(true);
-                    modello.setEnabled(true);
-                    Matricola.setEnabled(true);
+
                     esito.setEnabled(true);
+                    edited = true;
                 }
             }
 
@@ -233,7 +238,7 @@ public class ProvaActivity extends AppCompatActivity {
                 //list.add();
 
 
-                TipoProve tp = TipoProve.AlimentazioneSenzaVincoloFiscale;
+                TipoProve tp = TipoProve.get(TPHW.getTipo());
                 tipoprova.setSelection(tp.ordinal());
                 Esito e = TPHW.getEsito();
                 esito.setSelection(e.ordinal());
@@ -265,7 +270,7 @@ public class ProvaActivity extends AppCompatActivity {
 
 
             if(matricola!=null) {
-
+                TPHW = new ProvaHW();
                 Matricola.setText(matricola);
 
                 modello.setEnabled(false);
