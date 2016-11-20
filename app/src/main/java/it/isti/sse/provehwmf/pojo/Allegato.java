@@ -4,7 +4,6 @@ package it.isti.sse.provehwmf.pojo;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.io.Serializable;
 
@@ -234,5 +233,14 @@ public class Allegato implements Serializable {
         this.nome = nome;
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Allegato) {
+            Allegato a = (Allegato) other;
+            if(a.getNome().equals(this.getNome())){
+                return true;
+            }
+        }
+        return false;
+    }
 }
