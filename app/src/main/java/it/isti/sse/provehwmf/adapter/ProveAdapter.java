@@ -19,6 +19,7 @@ import java.util.List;
 import it.isti.sse.provehwmf.R;
 import it.isti.sse.provehwmf.pojo.ProvaHW;
 import it.isti.sse.provehwmf.pojo.ProveHW;
+import it.isti.sse.provehwmf.util.Utility;
 
 /**
  * Created by m4rt3 on 16/11/2016.
@@ -62,10 +63,13 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
         holder.TestHW.setText("Prova: "+PHW.getTipo());
         holder.EsitoTestHW.setText("Stato Prove: "+PHW.getEsito());
+        holder.cv.setCardBackgroundColor(Utility.getColor(PHW.getEsito()));
         holder.matricola.setText("Matricola Fiscale: "+PHW.getMatricola());
         holder.modello.setText("Modello: "+PHW.getModello());
         holder.data.setText("Data: "+PHW.getTimeStartPHW());
     }
+
+
 
     @Override
     public void onBindViewHolder(PHWViewHolder holder, int position) {
