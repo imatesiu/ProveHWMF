@@ -102,6 +102,8 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                 // i.putExtra("key","value");
                 Intent i = new Intent(MisuratoreFiscaleActivity.this, AllegatoActivity.class);
                 // i.putExtra("key","value");
+                i.putExtra("MatricolaMF",Matricola.getText().toString());
+
                 startActivityForResult(i, 150);
                 // startActivity(i);
             }

@@ -240,13 +240,13 @@ public class AllegatoActivity extends AppCompatActivity {
         try {
             Bundle b = getIntent().getExtras();
             ArrayList<String> ListMF = (ArrayList<String> ) b.getSerializable("ListaMatricoleMF");
+            if(ListMF!=null) {
+                ArrayAdapter adapter = new ArrayAdapter<String>(this,
+                R.layout.row, ListMF);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                matricole.setAdapter(adapter);
 
-            ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    android.R.layout.simple_spinner_item, ListMF);
-
-            matricole.setAdapter(adapter);
-
-
+            }
            // tipoprova.setEnabled(true);
            // matricole.setEnabled(true);
 
@@ -260,24 +260,25 @@ public class AllegatoActivity extends AppCompatActivity {
         try {
             Bundle b = getIntent().getExtras();
             String Matricola =  b.getString("MatricolaMF");
+            if(Matricola!=null) {
+                ArrayList<String> ListMF = new ArrayList<>();
+                ListMF.add(Matricola);
+                ArrayAdapter adapter = new ArrayAdapter<String>(this,
+                        R.layout.row, ListMF);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                matricole.setAdapter(adapter);
+                matricole.setSelection(0);
+                matricole.setEnabled(false);
 
-            ArrayList<String> ListMF = new ArrayList<>();
-            ListMF.add(Matricola);
-            ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    android.R.layout.simple_spinner_item, ListMF);
+                TipoProve tp = (TipoProve) b.getSerializable("TipoProva");
+                if(tp!=null) {
+                    tipoprova.setSelection(tp.ordinal()+1);
 
-            matricole.setAdapter(adapter);
-
-            String prova =  b.getString("ProvaMF");
-
-            TipoProve tp = (TipoProve) b.getSerializable("TipoProva");
-            
-            tipoprova.setSelection(tp.ordinal());
-
-            // tipoprova.setEnabled(true);
-            // matricole.setEnabled(true);
+                    tipoprova.setEnabled(false);
+                }
 
 
+            }
 
         }catch (NullPointerException | ClassCastException e){
 

@@ -114,6 +114,8 @@ public class ProvaActivity extends AppCompatActivity {
                 // i.putExtra("key","value");
                // startActivity(i);
                 Intent i = new Intent(ProvaActivity.this, AllegatoActivity.class);
+                i.putExtra("MatricolaMF",Matricola.getText().toString());
+                i.putExtra("TipoProva",Matricola.getText().toString());
                 // i.putExtra("key","value");
                 startActivityForResult(i, 190);
             }
@@ -214,29 +216,30 @@ public class ProvaActivity extends AppCompatActivity {
         try {
             Bundle b = getIntent().getExtras();
             ProvaHW TPHW = (ProvaHW) b.getSerializable("Prova");
-
-            allegati = TPHW.getAllegati();
-            ArrayList<String> list = new ArrayList<String>();
-            ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
-                    android.R.layout.simple_spinner_item, list);
-            //list.add();
-
-
-            TipoProve tp = TipoProve.AlimentazioneSenzaVincoloFiscale;
-            tipoprova.setSelection(tp.ordinal());
-            Esito e = TPHW.getEsito();
-            esito.setSelection(e.ordinal());
-
-            String tipoprovar = TPHW.getTipo();
+            if(TPHW!=null) {
+                allegati = TPHW.getAllegati();
+                ArrayList<String> list = new ArrayList<String>();
+                ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
+                        android.R.layout.simple_spinner_item, list);
+                //list.add();
 
 
-            Matricola.setText(TPHW.getMatricola());
+                TipoProve tp = TipoProve.AlimentazioneSenzaVincoloFiscale;
+                tipoprova.setSelection(tp.ordinal());
+                Esito e = TPHW.getEsito();
+                esito.setSelection(e.ordinal());
 
-            modello.setEnabled(false);
-            Matricola.setEnabled(false);
-            tipoprova.setEnabled(false);
-            esito.setEnabled(false);
-            modello.setText(TPHW.getModello());
+                String tipoprovar = TPHW.getTipo();
+
+
+                Matricola.setText(TPHW.getMatricola());
+
+                modello.setEnabled(false);
+                Matricola.setEnabled(false);
+                tipoprova.setEnabled(false);
+                esito.setEnabled(false);
+                modello.setText(TPHW.getModello());
+            }
 
 
         }catch (NullPointerException | ClassCastException e){
@@ -252,15 +255,16 @@ public class ProvaActivity extends AppCompatActivity {
 
 
 
+            if(matricola!=null) {
 
+                Matricola.setText(matricola);
 
-            Matricola.setText(matricola);
-
-            modello.setEnabled(false);
-            Matricola.setEnabled(false);
-            tipoprova.setEnabled(true);
-            esito.setEnabled(true);
-            modello.setText(model);
+                modello.setEnabled(false);
+                Matricola.setEnabled(false);
+               // tipoprova.setEnabled(true);
+               // esito.setEnabled(true);
+                modello.setText(model);
+            }
 
 
         }catch (NullPointerException | ClassCastException e){

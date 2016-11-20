@@ -24,15 +24,6 @@
 
         android:id="@+id/textView15" />
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView15"
-        android:layout_toEndOf="@+id/textView15"
-        android:layout_marginStart="17dp"
-
-        android:id="@+id/spinner3" />
-
     <TextView
         android:text="Tipo Prova:"
         android:layout_width="wrap_content"
@@ -40,15 +31,26 @@
         android:layout_below="@+id/spinner3"
         android:layout_alignStart="@+id/textView15"
         android:layout_marginTop="25dp"
+
         android:id="@+id/textView16" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView16"
-        android:layout_alignStart="@+id/spinner3"
 
         android:entries="@array/list_prove_hw_search"
-        android:layout_marginStart="17dp"
-        android:id="@+id/spinner4" />
+        android:id="@+id/spinner4"
+        android:layout_toEndOf="@+id/textView15"
+        android:layout_marginLeft="10dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/spinner3"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView15"
+        android:layout_marginLeft="10dp" />
 </RelativeLayout>
