@@ -3,7 +3,6 @@ package it.isti.sse.provehwmf;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,26 +10,27 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
 import it.isti.sse.provehwmf.pojo.Allegati;
+import it.isti.sse.provehwmf.pojo.Esito;
 import it.isti.sse.provehwmf.pojo.ProvaHW;
-import it.isti.sse.provehwmf.util.Utility;
+import it.isti.sse.provehwmf.pojo.TipoProve;
 
 public class ProvaActivity extends AppCompatActivity {
 
     //private Spinner modello;
-    private Spinner produttore;
-    private Spinner Matricola;
+    private EditText modello;
+    private EditText Matricola;
     private Spinner tipoprova;
     private Spinner esito;
 
@@ -42,10 +42,10 @@ public class ProvaActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //modello = (Spinner)findViewById(R.id.spinner);
-        produttore = (Spinner)findViewById(R.id.spinner);
-        Matricola = (Spinner)findViewById(R.id.spinnerMMF);
-        tipoprova = (Spinner)findViewById(R.id.spinnerTipoProva);
-        esito = (Spinner)findViewById(R.id.spinnerEsito);
+        modello = (EditText)findViewById(R.id.spinner);
+        Matricola  = (EditText)findViewById(R.id.spinnerMMF);
+        tipoprova  = (Spinner)findViewById(R.id.spinnerTipoProva);
+        esito      = (Spinner)findViewById(R.id.spinnerEsito);
 
 
      /*   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -134,12 +134,12 @@ public class ProvaActivity extends AppCompatActivity {
                 // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
                 if(tipoprova.isEnabled()){
                     tipoprova.setEnabled(false);
-                    produttore.setEnabled(false);
+                    modello.setEnabled(false);
                     Matricola.setEnabled(false);
                     esito.setEnabled(false);
                 }else {
                     tipoprova.setEnabled(true);
-                    produttore.setEnabled(true);
+                    modello.setEnabled(true);
                     Matricola.setEnabled(true);
                     esito.setEnabled(true);
                 }
@@ -159,7 +159,27 @@ public class ProvaActivity extends AppCompatActivity {
             ProvaHW TPHW = (ProvaHW) b.getSerializable("Prova");
 
             a = TPHW.getAllegati();
+            ArrayList<String> list = new ArrayList<String>();
+            ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
+                    android.R.layout.simple_spinner_item, list);
+            //list.add();
 
+
+            TipoProve tp = TipoProve.AlimentazioneSenzaVincoloFiscale;
+            tipoprova.setSelection(tp.ordinal());
+            Esito e = TPHW.getEsito();
+            esito.setSelection(e.ordinal());
+
+            String tipoprovar = TPHW.getTipo();
+
+
+            Matricola.setText(TPHW.getMatricola());
+
+            modello.setEnabled(false);
+            Matricola.setEnabled(false);
+            tipoprova.setEnabled(false);
+            esito.setEnabled(false);
+            modello.setText(TPHW.getModello());
 
 
         }catch (NullPointerException | ClassCastException e){

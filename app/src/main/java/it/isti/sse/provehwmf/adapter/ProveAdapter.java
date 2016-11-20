@@ -61,7 +61,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
     private void init(PHWViewHolder holder, ProvaHW PHW){
 
         holder.TestHW.setText("Prova: "+PHW.getTipo());
-        holder.EsitoTestHW.setText("Stato Prove: Positivo"+PHW.getEsito());
+        holder.EsitoTestHW.setText("Stato Prove: "+PHW.getEsito());
         holder.matricola.setText("Matricola Fiscale: "+PHW.getMatricola());
         holder.modello.setText("Modello: "+PHW.getModello());
         holder.data.setText("Data: "+PHW.getTimeStartPHW());
@@ -76,14 +76,14 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         LPHW.getProvaHW().get(position).getTimeStartPHW();*/
 
         holder.position=position;
-        //init(holder,LPHW.getProvaHW().get(position));
+        init(holder,LPHW.getProvaHW().get(position));
         //holder.onClick(holder.i);
 
-        holder.TestHW.setText("Prova: Alimentazione senza\\n Vincolo Fiscale");
-        holder.EsitoTestHW.setText("Stato Prove: Positivo");
-        holder.matricola.setText("Matricola Fiscale: 1255998-552");
-        holder.modello.setText("Modello: TIPO C");
-        holder.data.setText("Data: 12/12/2016 12:15:16");
+       // holder.TestHW.setText("Prova: Alimentazione senza\\n Vincolo Fiscale");
+       // holder.EsitoTestHW.setText("Stato Prove: Positivo");
+       // holder.matricola.setText("Matricola Fiscale: 1255998-552");
+       // holder.modello.setText("Modello: TIPO C");
+       // holder.data.setText("Data: 12/12/2016 12:15:16");
 
         holder.overflow.setOnClickListener(new ProveAdapter.MyMenuItemClickListenerMF(position));
 

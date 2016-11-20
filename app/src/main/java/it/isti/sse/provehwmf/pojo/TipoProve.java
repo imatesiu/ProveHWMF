@@ -6,13 +6,15 @@ package it.isti.sse.provehwmf.pojo;
 
 public enum TipoProve {
 
-    Termiche,
-    Impermeabilita,
-    Vibrazione,
-    DisturbiElettromagnetici,
-    DisturbiCondotti,
-    BatteriaSottoProtezioneSF,
-    AlimentazioneSenzaVincoloFiscale,
-    ScaricheElettrostatiche
-    
+    Termiche (1),
+    Impermeabilita (2),
+    Vibrazione (3),
+    DisturbiElettromagnetici (4),
+    DisturbiCondotti (5),
+    BatteriaSottoProtezioneSF (6),
+    AlimentazioneSenzaVincoloFiscale (7),
+    ScaricheElettrostatiche (8);
+
+    TipoProve(int i) {
+    }
 }
