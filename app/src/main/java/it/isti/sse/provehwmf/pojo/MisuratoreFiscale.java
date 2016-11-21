@@ -308,7 +308,10 @@ public class MisuratoreFiscale implements Serializable {
         p.setMatricola(a.getMatricola());
         p.setTimeStartPHW(a.getTime());
         p.setEsito(Esito.Incorso);
-        p.getAllegati().getAllegato().add(a);
         getProveHW().getProvaHW().add(p);
+        Allegati oo = p.getAllegati();
+        oo.getAllegato().add(a);
+        System.out.print("");
+
     }
 }

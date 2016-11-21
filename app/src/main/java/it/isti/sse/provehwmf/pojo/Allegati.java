@@ -19,7 +19,7 @@ public class Allegati implements Serializable {
      */
     @SerializedName("Allegato")
     @Expose
-    private List<Allegato> allegato = new ArrayList<Allegato>();
+    private List<Allegato> allegato;
 
     /**
      * 
@@ -32,7 +32,8 @@ public class Allegati implements Serializable {
         if(allegato!=null) {
             return allegato;
         }
-        return new ArrayList<>();
+        allegato = new ArrayList<Allegato>();
+        return allegato;
     }
 
     /**
