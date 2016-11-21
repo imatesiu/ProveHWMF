@@ -2,9 +2,11 @@ package it.isti.sse.provehwmf;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -140,7 +142,7 @@ public class AllegatoActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
                 Uri uri = data.getData();
 
-                Allegato a = createAllegato(new File(uri.getPath()),"FILE");
+                Allegato a = createAllegato(uri,"FILE");
                 Intent i = getIntent().putExtra("newAllegato",a);
                 //TODO:caricafile
                 setResult(Activity.RESULT_OK,i);//, intent);
@@ -216,6 +218,36 @@ public class AllegatoActivity extends AppCompatActivity {
         a.setDati("");
         a.setUrl("");
         return  a;
+    }
+
+    private Allegato createAllegato(Uri data, String tipo) {
+        Allegato a = cAllegato(tipo);
+        a.setNome(getFileName(data));
+        a.setDati("");
+        a.setUrl(data.getPath());
+        return  a;
+    }
+
+    private String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 
     private Allegato createAllegato(File data, String tipo) {
