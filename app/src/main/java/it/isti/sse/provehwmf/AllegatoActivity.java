@@ -336,11 +336,12 @@ public class AllegatoActivity extends AppCompatActivity {
                 matricole.setEnabled(false);
 
                 if(model!=null){
-                    ListMF = new ArrayList<>();
-                    adapter = new ArrayAdapter<String>(this,
-                            R.layout.row, ListMF);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    modello.setAdapter(adapter);
+                    ArrayList<String> ListModel = new ArrayList<>();
+                    ArrayAdapter adapters = new ArrayAdapter<String>(this,
+                            R.layout.row, ListModel);
+                    adapters.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    ListModel.add(model);
+                    modello.setAdapter(adapters);
                     modello.setSelection(0);
                     modello.setEnabled(false);
                 }

@@ -177,6 +177,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
             matricola = (TextView) itemView.findViewById(R.id.textView9);
             tipoallegato = (TextView) itemView.findViewById(R.id.textView12);
             nomeallegato = (TextView) itemView.findViewById(R.id.textView10);
+            nomeallegato.setSelected(true);
 
             i=itemView;
         }
