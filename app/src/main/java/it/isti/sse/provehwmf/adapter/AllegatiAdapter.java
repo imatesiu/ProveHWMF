@@ -61,6 +61,11 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         holder.matricola.setText(a.getMatricola());
         holder.nomeallegato.setText(a.getNome());
         holder.tipoallegato.setText(a.getTipo());
+        if(a.getTipo()!=null){
+            if(a.getTipo().equals("JPG")){
+                holder.cardimg.setImageResource(R.drawable.ic_menu_camera);
+            }
+        }
     }
 
     @Override
@@ -168,11 +173,14 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         public TextView matricola;
         public TextView tipoallegato;
         public TextView nomeallegato;
+        public ImageView cardimg;
+
 
         PHWViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.card_viewAllegatoTestHW);
             overflow = (ImageView) itemView.findViewById(R.id.overflow);
+            cardimg = (ImageView) itemView.findViewById(R.id.classecard3);
 
             matricola = (TextView) itemView.findViewById(R.id.textView9);
             tipoallegato = (TextView) itemView.findViewById(R.id.textView12);

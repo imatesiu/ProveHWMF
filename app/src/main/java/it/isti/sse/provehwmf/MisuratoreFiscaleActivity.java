@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,6 +33,7 @@ import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
 import it.isti.sse.provehwmf.adapter.MyClickListenerProve;
 import it.isti.sse.provehwmf.adapter.ProveAdapter;
 import it.isti.sse.provehwmf.pojo.Allegati;
+import it.isti.sse.provehwmf.pojo.Allegato;
 import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
 import it.isti.sse.provehwmf.pojo.ProvaHW;
 import it.isti.sse.provehwmf.pojo.ProveHW;
@@ -50,6 +52,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
     private ProveHW PHW;
     private Allegati allegati;
     private ProveAdapter adapter;
+    private AllegatiAdapter adaptera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -212,7 +215,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
-        AllegatiAdapter adaptera = new AllegatiAdapter(this, allegati);
+        adaptera = new AllegatiAdapter(this, allegati);
         rva.setAdapter(adaptera);
 
 
@@ -255,9 +258,23 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
         if (requestCode == 150) { //Allegato
             if (resultCode == Activity.RESULT_OK) {
-                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
-                Snackbar.make(coordinatorLayout, "Allegato Salvato", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                try {
+                    Bundle b = data.getExtras();
+                    Allegato a = (Allegato) b.getSerializable("newAllegato");
+
+                    PHW.insert(a);
+
+                    allegati.getAllegato().add(a);
+                    adapter.notifyDataSetChanged();
+                    adaptera.notifyDataSetChanged();
+
+
+                    CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
+                    Snackbar.make(coordinatorLayout, "Allegato Salvato", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }catch (NullPointerException | ClassCastException e){
+
+                }
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);

@@ -26,7 +26,7 @@ public class JsonFactory {
     private void init() {
         Allegato a = new Allegato();
         a.setMatricola("1122334455");
-        a.setNome("Foto.jpg");
+        a.setNome("Foto00000000000000000000000000000000.jpg");
         a.setTipo("JPG");
         a.setUserid("Gio");
         a.setTime("12/12/2016 12:15:16");

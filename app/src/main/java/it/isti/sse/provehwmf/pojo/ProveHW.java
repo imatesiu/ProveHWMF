@@ -73,4 +73,24 @@ public class ProveHW  implements Serializable {
             getProvaHW().add(nphw);
         }
     }
+
+    public void insert(Allegato a) {
+        for (ProvaHW p:getProvaHW()) {
+            if(p.getMatricola().equals(a.getMatricola())){
+                p.getAllegati().getAllegato().add(a);
+                return;
+            }
+        }
+        ProvaHW p = new ProvaHW();
+        p.setTipo(a.getTipoProva());
+        p.setMatricola(a.getMatricola());
+        p.setModello(a.getModello());
+        p.setTimeStartPHW(a.getTime());
+        p.setEsito(Esito.Incorso);
+        getProvaHW().add(p);
+        Allegati oo = p.getAllegati();
+        oo.getAllegato().add(a);
+
+
+    }
 }
