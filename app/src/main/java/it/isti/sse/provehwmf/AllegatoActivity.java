@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -26,12 +26,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import it.isti.sse.provehwmf.pojo.Allegato;
-import it.isti.sse.provehwmf.pojo.TipoProve;
 import it.isti.sse.provehwmf.util.Utility;
+import android.widget.AdapterView.OnItemSelectedListener;
+
 
 public class AllegatoActivity extends AppCompatActivity {
 
     private Spinner matricole;
+    private Spinner modello;
     private Spinner tipoprova;
     private File fileUriCamera;
 
@@ -44,7 +46,7 @@ public class AllegatoActivity extends AppCompatActivity {
 
         matricole = (Spinner)  findViewById(R.id.spinner3);
         tipoprova = (Spinner)  findViewById(R.id.spinner4);
-
+        modello = (Spinner)  findViewById(R.id.spinner6);
 
         FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menuAHW);
         menuRed.setClosedOnTouchOutside(true);
@@ -212,6 +214,7 @@ public class AllegatoActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
         a.setTime(timeStamp);
         a.setTipo(tipo);
+        a.setModello(modello.getSelectedItem().toString());
         //TODO: userid
         a.setUserid("Ge");
         a.setNome("");
@@ -273,11 +276,39 @@ public class AllegatoActivity extends AppCompatActivity {
         try {
             Bundle b = getIntent().getExtras();
             ArrayList<String> ListMF = (ArrayList<String> ) b.getSerializable("ListaMatricoleMF");
+            ArrayList<String> ListModelliMF = (ArrayList<String> ) b.getSerializable("ListaModelliMF");
             if(ListMF!=null) {
                 ArrayAdapter adapter = new ArrayAdapter<String>(this,
                 R.layout.row, ListMF);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 matricole.setAdapter(adapter);
+
+                matricole.setOnItemSelectedListener(new  OnItemSelectedListener() {
+                    public void onItemSelected(
+                            AdapterView<?> parent, View view, int position, long id) {
+                            modello.setSelection(position);
+                    }
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+                ArrayAdapter adapter2 = new ArrayAdapter<String>(this,
+                        R.layout.row, ListModelliMF);
+                adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                modello.setAdapter(adapter2);
+                modello.setOnItemSelectedListener(new OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        matricole.setSelection(position);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
 
             }
            // tipoprova.setEnabled(true);
@@ -293,6 +324,7 @@ public class AllegatoActivity extends AppCompatActivity {
         try {
             Bundle b = getIntent().getExtras();
             String Matricola =  b.getString("MatricolaMF");
+            String model =  b.getString("ModelloMF");
             if(Matricola!=null) {
                 ArrayList<String> ListMF = new ArrayList<>();
                 ListMF.add(Matricola);
@@ -302,6 +334,16 @@ public class AllegatoActivity extends AppCompatActivity {
                 matricole.setAdapter(adapter);
                 matricole.setSelection(0);
                 matricole.setEnabled(false);
+
+                if(model!=null){
+                    ListMF = new ArrayList<>();
+                    adapter = new ArrayAdapter<String>(this,
+                            R.layout.row, ListMF);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    modello.setAdapter(adapter);
+                    modello.setSelection(0);
+                    modello.setEnabled(false);
+                }
 
                 String tpw = (String) b.getString("TipoProva");
                 if(tpw!=null) {

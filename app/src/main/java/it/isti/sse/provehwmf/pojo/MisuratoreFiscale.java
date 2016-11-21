@@ -306,6 +306,7 @@ public class MisuratoreFiscale implements Serializable {
         ProvaHW p = new ProvaHW();
         p.setTipo(a.getTipoProva());
         p.setMatricola(a.getMatricola());
+        p.setModello(a.getModello());
         p.setTimeStartPHW(a.getTime());
         p.setEsito(Esito.Incorso);
         getProveHW().getProvaHW().add(p);

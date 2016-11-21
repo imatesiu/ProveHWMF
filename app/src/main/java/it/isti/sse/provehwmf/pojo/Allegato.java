@@ -76,6 +76,10 @@ public class Allegato implements Serializable, Comparable<Allegato> {
     @Expose
     private String userid;
 
+    @SerializedName("Modello")
+    @Expose
+    private String modello;
+
     /**
      * 
      * (Required)
@@ -263,5 +267,17 @@ public class Allegato implements Serializable, Comparable<Allegato> {
             return time;
         }
         return this.getNome().compareTo(o.getNome());
+    }
+
+    public String getTipoprova() {
+        return tipoprova;
+    }
+
+    public String getModello() {
+        return modello;
+    }
+
+    public void setModello(String model) {
+        modello = model;
     }
 }

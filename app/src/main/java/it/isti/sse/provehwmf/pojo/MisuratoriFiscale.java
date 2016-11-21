@@ -1,6 +1,8 @@
 
 package it.isti.sse.provehwmf.pojo;
 
+import android.util.Pair;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,13 +84,16 @@ public class MisuratoriFiscale implements Serializable {
 
     }
 
-    public ArrayList<String> getMatricoleFiscali() {
+    public Pair<ArrayList<String>,ArrayList<String>> getMatricoleFiscali() {
         ArrayList<String> ListaMF = new ArrayList<>();
         ListaMF.add("");
+        ArrayList<String> ListaM = new ArrayList<>();
+        ListaM.add("");
         for (MisuratoreFiscale MF:getMisuratoreFiscale()) {
             ListaMF.add(MF.getMatricola());
+            ListaM.add(MF.getModello());
         }
-        return ListaMF;
+        return new Pair<>(ListaMF,ListaM);
     }
 
     public void insert(Allegato a) {
