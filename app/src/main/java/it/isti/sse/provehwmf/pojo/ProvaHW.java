@@ -225,7 +225,10 @@ public class ProvaHW implements Serializable, Comparable<ProvaHW> {
      *     The allegati
      */
     public Allegati getAllegati() {
-        return allegati;
+        if(allegati!=null) {
+            return allegati;
+        }
+        return new Allegati();
     }
 
     /**

@@ -18,6 +18,11 @@ public class Allegato implements Serializable, Comparable<Allegato> {
     @SerializedName("Matricola")
     @Expose
     private String matricola;
+
+
+    @SerializedName("TipoProva")
+    @Expose
+    private String tipoprova;
     /**
      * 
      * (Required)
@@ -103,7 +108,9 @@ public class Allegato implements Serializable, Comparable<Allegato> {
     public String getTipo() {
         return tipo;
     }
-
+    public String getTipoProva() {
+        return tipoprova;
+    }
     /**
      * 
      * (Required)
@@ -113,6 +120,9 @@ public class Allegato implements Serializable, Comparable<Allegato> {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    public void setTipoProva(String tipoprova) {
+        this.tipoprova = tipoprova;
     }
 
     /**
@@ -216,6 +226,7 @@ public class Allegato implements Serializable, Comparable<Allegato> {
         return "Allegato{" +
                 "matricola='" + matricola + '\'' +
                 ", tipo='" + tipo + '\'' +
+                ", tipoprova='" + tipoprova + '\'' +
                 ", nome='" + nome + '\'' +
                 ", url='" + url + '\'' +
                 ", dati='" + dati + '\'' +

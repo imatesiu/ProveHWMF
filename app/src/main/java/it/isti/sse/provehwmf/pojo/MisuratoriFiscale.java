@@ -85,10 +85,18 @@ public class MisuratoriFiscale implements Serializable {
     public ArrayList<String> getMatricoleFiscali() {
         ArrayList<String> ListaMF = new ArrayList<>();
         ListaMF.add("");
-        for (MisuratoreFiscale MF:getMisuratoreFiscale()
-             ) {
+        for (MisuratoreFiscale MF:getMisuratoreFiscale()) {
             ListaMF.add(MF.getMatricola());
         }
         return ListaMF;
+    }
+
+    public void insert(Allegato a) {
+        for (MisuratoreFiscale MF:getMisuratoreFiscale()) {
+            if(MF.getMatricola().equals(a.getMatricola())){
+                 MF.insert(a);
+            }
+        }
+
     }
 }

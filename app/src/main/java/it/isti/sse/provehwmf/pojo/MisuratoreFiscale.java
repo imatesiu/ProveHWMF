@@ -238,7 +238,10 @@ public class MisuratoreFiscale implements Serializable {
      *     The proveHW
      */
     public ProveHW getProveHW() {
-        return proveHW;
+        if(proveHW!=null) {
+            return proveHW;
+        }
+        return  new ProveHW();
     }
 
     /**
@@ -293,4 +296,19 @@ public class MisuratoreFiscale implements Serializable {
                 '}';
     }
 
+    public void insert(Allegato a) {
+        for (ProvaHW PHW:getProveHW().getProvaHW()) {
+            if(a.getTipoProva().equals(PHW.getTipo())){
+                PHW.getAllegati().getAllegato().add(a);
+                return;
+            }
+        }
+        ProvaHW p = new ProvaHW();
+        p.setTipo(a.getTipoProva());
+        p.setMatricola(a.getMatricola());
+        p.setTimeStartPHW(a.getTime());
+        p.setEsito(Esito.Incorso);
+        p.getAllegati().getAllegato().add(a);
+        getProveHW().getProvaHW().add(p);
+    }
 }

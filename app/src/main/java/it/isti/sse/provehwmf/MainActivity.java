@@ -34,6 +34,7 @@ import java.util.List;
 
 import it.isti.sse.provehwmf.adapter.MisuratoriFiscaleAdapter;
 import it.isti.sse.provehwmf.adapter.MyClickListener;
+import it.isti.sse.provehwmf.pojo.Allegato;
 import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
 import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
 import it.isti.sse.provehwmf.pojo.ProvaHW;
@@ -317,9 +318,19 @@ public class MainActivity extends AppCompatActivity
             }else {
                 if (requestCode == 530) { //Allegato
                     if(resultCode == Activity.RESULT_OK){
-                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                        Snackbar.make(drawer, "Allegato Salvato", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null).show();
+                        try {
+                            Bundle b = data.getExtras();
+                            Allegato a = (Allegato) b.getSerializable("newAllegato");
+                            LMF.insert(a);
+                            adapter.notifyDataSetChanged();
+
+                            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                            Snackbar.make(drawer, "Allegato Salvato", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                        }catch (NullPointerException | ClassCastException e){
+
+                        }
+
                     }
                     if (resultCode == Activity.RESULT_CANCELED) {
                         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

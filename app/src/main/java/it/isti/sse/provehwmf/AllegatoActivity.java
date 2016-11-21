@@ -179,7 +179,7 @@ public class AllegatoActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                 Allegato a = createAllegato(fileUriCamera,"JPG");
-                Intent i = getIntent().putExtra("newAllegatoFoto",a);
+                Intent i = getIntent().putExtra("newAllegato",a);
                 setResult(Activity.RESULT_OK,i);//, intent);
                 finish();
             }
@@ -206,9 +206,10 @@ public class AllegatoActivity extends AppCompatActivity {
         Allegato a = new Allegato();
         String mtricolafiscale = matricole.getSelectedItem().toString();
         a.setMatricola(mtricolafiscale);
+        a.setTipoProva(tipoprova.getSelectedItem().toString());
         String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
         a.setTime(timeStamp);
-        a.setTime(tipo);
+        a.setTipo(tipo);
         //TODO: userid
         a.setUserid("Ge");
         a.setNome("");
