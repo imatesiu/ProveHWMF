@@ -115,15 +115,11 @@ public class MainActivity extends AppCompatActivity
         rv.setLayoutManager(llm);
 
 
-        List<String> test = new ArrayList<>();
-        test.add("a");
-        test.add("b");
-        test.add("c");
-        test.add("b");test.add("b");test.add("b");
+        
 
         JsonFactory factory = new JsonFactory();
         LMF = factory.getMisuratoriFiscale();
-        adapter = new MisuratoriFiscaleAdapter(this,test,LMF);
+        adapter = new MisuratoriFiscaleAdapter(this,LMF);
 
 
         adapter.setMyClickListener(new MyClickListener() {

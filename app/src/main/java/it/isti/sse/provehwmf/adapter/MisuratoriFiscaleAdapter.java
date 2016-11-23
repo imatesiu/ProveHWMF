@@ -29,15 +29,13 @@ import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
 public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFiscaleAdapter.MFViewHolder> {
 
 
-    private List<String> ListaMisuratoreFiscale;
     private Context mContext;
     private static MyClickListener myClickListener;
     private  MisuratoriFiscale LMF;
 
 
-    public MisuratoriFiscaleAdapter(Context lContext, List<String> MisuratoriFiscali, MisuratoriFiscale LMF){
+    public MisuratoriFiscaleAdapter(Context lContext, MisuratoriFiscale LMF){
         super();
-        this.ListaMisuratoreFiscale = MisuratoriFiscali;
         this.mContext = lContext;
         this.LMF=LMF;
     }
@@ -118,7 +116,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try{
-                        ListaMisuratoreFiscale.remove(position);
+                        LMF.getMisuratoreFiscale().remove(position);
                         notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception
