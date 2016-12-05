@@ -29,14 +29,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import isti.cnr.sse.rest.data.Allegato;
+import isti.cnr.sse.rest.data.ModelloMF;
+import isti.cnr.sse.rest.data.Prova;
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
 import it.isti.sse.provehwmf.adapter.MyClickListenerProve;
 import it.isti.sse.provehwmf.adapter.ProveAdapter;
-import it.isti.sse.provehwmf.pojo.Allegati;
-import it.isti.sse.provehwmf.pojo.Allegato;
-import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
-import it.isti.sse.provehwmf.pojo.ProvaHW;
-import it.isti.sse.provehwmf.pojo.ProveHW;
+
 import it.isti.sse.provehwmf.util.Utility;
 
 public class MisuratoreFiscaleActivity extends AppCompatActivity {
@@ -49,8 +48,8 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
     private EditText modello;
     private EditText produttore;
     private EditText Matricola;
-    private ProveHW PHW;
-    private Allegati allegati;
+    private List<Prova> PHW;
+    private List<Allegato> allegati;
     private ProveAdapter adapter;
     private AllegatiAdapter adaptera;
 
@@ -121,14 +120,14 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
-                MisuratoreFiscale MF = new MisuratoreFiscale();
+                ModelloMF MF = new ModelloMF();
                 String model = modello.getText().toString();
-                MF.setModello(model);
-                MF.setMatricola(Matricola.getText().toString());
-                MF.setDitta(produttore.getText().toString());
-                MF.setProveHW(PHW);
-                String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
-                MF.setTimeMFStart(timeStamp);
+                MF.setNomeDitta(model);
+                MF.setNumeroRapportoProva(Matricola.getText().toString());
+                MF.setNomeDitta(produttore.getText().toString());
+                MF.setProve(PHW);
+                //String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
+               // MF.setTimeMFStart(timeStamp);
 
 
 
@@ -167,14 +166,14 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
 
 
 
-        PHW = new ProveHW();
-        allegati = new Allegati();
+        PHW = new ArrayList<>();
+        allegati = new ArrayList<>();
         try {
             Bundle b = getIntent().getExtras();
-            MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("MF");
-            produttore.setText(MF.getDitta());
-            modello.setText(MF.getModello());
-            Matricola.setText(MF.getMatricola());
+            ModelloMF MF = (ModelloMF) b.getSerializable("MF");
+            produttore.setText(MF.getNomeDitta());
+            modello.setText(MF.getNomeModello());
+            Matricola.setText(MF.getNumeroRapportoProva());
 
             modello.setEnabled(false);
             produttore.setEnabled(false);
@@ -185,11 +184,11 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             //imm.hideSoftInputFromWindow( getWindow().getCurrentFocus().getWindowToken(),  InputMethodManager.HIDE_NOT_ALWAYS);
 
 
-            PHW =  MF.getProveHW();
+            PHW =  MF.getProve();
 
-            allegati = new Allegati();
-            for (ProvaHW p : PHW.getProvaHW()){
-                allegati.getAllegato().addAll(p.getAllegati().getAllegato());
+            allegati= new ArrayList<>();
+            for (Prova p : PHW){
+                allegati.addAll(p.getListallegato());
             }
 
 
@@ -202,7 +201,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         adapter.setMyClickListener(new MyClickListenerProve() {
             @Override
-            public void onItemClick(ProvaHW provaHW) {
+            public void onItemClick(Prova provaHW) {
                 Intent i = new Intent(MisuratoreFiscaleActivity.this, ProvaActivity.class);
                 i.putExtra("Prova",provaHW);
                 startActivityForResult(i, 50);
@@ -231,11 +230,11 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 try {
                     Bundle b = data.getExtras();
-                    ProvaHW NPHW = (ProvaHW) b.getSerializable("newProva");
+                    Prova NPHW = (Prova) b.getSerializable("newProva");
 
                     PHW.add(NPHW);
                     adapter.notifyDataSetChanged();
-                    allegati.getAllegato().addAll(NPHW.getAllegati().getAllegato());
+                    allegati.addAll(NPHW.getListallegato());
                     CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
                     Snackbar.make(coordinatorLayout, "Test HW Salvato", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -262,9 +261,9 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                     Bundle b = data.getExtras();
                     Allegato a = (Allegato) b.getSerializable("newAllegato");
 
-                    PHW.insert(a);
+                    insertAllegato(PHW, a);
 
-                    allegati.getAllegato().add(a);
+                    allegati.add(a);
                     adapter.notifyDataSetChanged();
                     adaptera.notifyDataSetChanged();
 
@@ -291,5 +290,16 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         // to Activity.RESULT_CANCELED to indicate a failure
         setResult(Activity.RESULT_CANCELED);
         super.onBackPressed();
+    }
+
+    private void insertAllegato(List<Prova> PHW, Allegato a) {
+
+                for(Prova p :PHW) {
+                    if(p.getTp().toString().equals(a.getTipoprova())) {
+                        p.getListallegato().add(a);
+                        break;
+                    }
+                }
+
     }
 }
