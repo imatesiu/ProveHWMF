@@ -18,6 +18,7 @@
         <item>Batteria sotto protezione SF</item>
         <item>Alimentazione senza Vincolo Fiscale</item>
         <item>Scariche Elettrostatiche</item>
+        <item>Guasto e malfunzionamento</item>
     </string-array>
 
     <string-array name="list_prove_hw_search">
@@ -30,17 +31,18 @@
         <item>Batteria sotto protezione SF</item>
         <item>Alimentazione senza Vincolo Fiscale</item>
         <item>Scariche Elettrostatiche</item>
+        <item>Guasto e malfunzionamento</item>
     </string-array>
 
 
 
 
     <string-array name="list_esito_prove_hw">
-        <item>In corso</item>
         <item>Positivo</item>
         <item>Negativo</item>
-        <item>Sospeso</item>
         <item>Incerto</item>
+        <item>In corso</item>
+        <item>Sospeso</item>
 
 
 

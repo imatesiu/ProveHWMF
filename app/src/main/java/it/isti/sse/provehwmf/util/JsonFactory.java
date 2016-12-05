@@ -3,6 +3,7 @@ package it.isti.sse.provehwmf.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,8 @@ public class JsonFactory {
         List<Ditta> e = new ArrayList<Ditta>();
         Ditta a = new Ditta("Custom", "Parma", "11");
         List<ModelloMF> misuratoriFiscali = new ArrayList<>();
-        ModelloMF mf = new ModelloMF("TIPO1","14E","Custom", new Date());
+        String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
+        ModelloMF mf = new ModelloMF("TIPO1","14E","Custom", timeStamp);
         misuratoriFiscali.add(mf);
         a.setMisuratoriFiscali(misuratoriFiscali );
 
@@ -39,7 +41,7 @@ public class JsonFactory {
         e.add(a);
         Prova pp = new Prova(TipoProve.AlimentazioneBatteriaSenzaVincoloFiscale.toString(), "",
                 TipoProve.AlimentazioneBatteriaSenzaVincoloFiscale, true,mf);
-
+        pp.setTimeStartPHW("12/12/2016 12:15:16");
         Allegato a2 = new Allegato();
         a2.setMatricola("1122334455");
         a2.setNome("Foto00000000000000000000000000000000.jpg");
@@ -64,6 +66,8 @@ public class JsonFactory {
         mf.getProve().add(pp);
         pp = new Prova(TipoProve.Termiche.toString(), "",
                 TipoProve.Termiche, true,mf);
+        pp.setTimeStartPHW("12/12/2016 12:15:16");
+
         mf.getProve().add(pp);
 
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
@@ -73,7 +77,7 @@ public class JsonFactory {
 
         Ditta b = new Ditta("SHS", "Roma", "1213");
         misuratoriFiscali = new ArrayList<>();
-        mf = new ModelloMF("TIPO2","15E","SHS", new Date());
+        mf = new ModelloMF("TIPO2","15E","SHS", timeStamp);
         misuratoriFiscali.add(mf);
         b.setMisuratoriFiscali(misuratoriFiscali );
         e.add(b);
@@ -81,15 +85,16 @@ public class JsonFactory {
         pp = new Prova(TipoProve.AlimentazioneBatteriaSenzaVincoloFiscale.toString(), "",
                 TipoProve.AlimentazioneBatteriaSenzaVincoloFiscale, true,mf);
         mf.getProve().add(pp);
-
+        pp.setTimeStartPHW("12/12/2016 12:15:16");
         Ditta c = new Ditta("HP", "Pisa", "121");
         misuratoriFiscali = new ArrayList<>();
-        mf = new ModelloMF("TIPO3","17E","HP", new Date());
+        mf = new ModelloMF("TIPO3","17E","HP", timeStamp);
         misuratoriFiscali.add(mf);
         c.setMisuratoriFiscali(misuratoriFiscali );
         e.add(c);
         pp = new Prova(TipoProve.AlimentazioneBatteriaSenzaVincoloFiscale.toString(), "",
                 TipoProve.AlimentazioneBatteriaSenzaVincoloFiscale, true,mf);
+        pp.setTimeStartPHW("12/12/2016 12:15:16");
         mf.getProve().add(pp);
         return e;
     }

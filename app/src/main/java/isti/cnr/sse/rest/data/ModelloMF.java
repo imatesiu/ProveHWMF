@@ -39,7 +39,7 @@ public class ModelloMF implements Serializable,Comparable<ModelloMF>{
 	public ModelloMF(){
 		
 	}
-	public ModelloMF(String nomeModello, String numeroRapportoProva, String nomeDitta, Date date) {
+	public ModelloMF(String nomeModello, String numeroRapportoProva, String nomeDitta, String date) {
 		super();
 		this.nomeModello = nomeModello;
 		this.numeroRapportoProva = numeroRapportoProva;

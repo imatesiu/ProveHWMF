@@ -262,11 +262,35 @@ public class Prova implements Serializable, Comparable<Prova> {
 	public boolean equals(Object o)
     {
         if(o instanceof Prova && ((Prova)o).tp.equals(this.tp ))
-            return true;
+			if(this.getTimeStartPHW()!=null)
+				if(((Prova)o).getTimeStartPHW()!=null)
+					if (((Prova)o).getTimeStartPHW().equals(this.getTimeStartPHW()))
+            			return true;
+					else
+						return false;
+				else
+					return true;
+			else
+				return true;
         else
-            return false;   
+            return false;
+
+		
     }
 
+
+	public void merge(Prova nphw) {
+		merge(nphw.getListallegato());
+		this.setStato(nphw.getStato());
+	}
+
+	private void merge(List<Allegato> listallegato1) {
+		for (Allegato a: listallegato1) {
+			if(!this.getListallegato().contains(a)){
+				this.getListallegato().add(a);
+			}
+		}
+	}
 
 
 }

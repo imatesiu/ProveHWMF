@@ -232,7 +232,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
                     Bundle b = data.getExtras();
                     Prova NPHW = (Prova) b.getSerializable("newProva");
 
-                    PHW.add(NPHW);
+                    add(NPHW);
                     adapter.notifyDataSetChanged();
                     allegati.addAll(NPHW.getListallegato());
                     CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.misuraotoreactivity);
@@ -282,6 +282,13 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void add(Prova nphw) {
+        int index = PHW.indexOf(nphw);
+        if(index>=0){
+            PHW.get(index).merge(nphw);
+        }
     }
 
     @Override
