@@ -64,6 +64,14 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
         if(a.getTipo()!=null){
             if(a.getTipo().equals("JPG")){
                 holder.cardimg.setImageResource(R.drawable.ic_menu_camera);
+            }else{
+                if(a.getTipo().equals("PDF")){
+                    holder.cardimg.setImageResource(R.drawable.ic_pdf);
+                }else{
+                    if(a.getTipo().equals("TXT")){
+                        holder.cardimg.setImageResource(R.drawable.ic_txt);
+                    }
+                }
             }
         }
     }
