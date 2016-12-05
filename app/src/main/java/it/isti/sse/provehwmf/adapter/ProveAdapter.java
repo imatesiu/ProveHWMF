@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import isti.cnr.sse.rest.data.Prova;
+import isti.cnr.sse.rest.data.TipoProve;
 import it.isti.sse.provehwmf.R;
 
 import it.isti.sse.provehwmf.util.Utility;
@@ -67,8 +68,48 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         holder.matricola.setText("Num Rapporto Prova: "+PHW.getNumeroRapportoProva());
         holder.modello.setText("Modello: "+PHW.getNomeModello());
         holder.data.setText("Data: "+PHW.getTimeStartPHW());
+        Img(holder, PHW.getTp());
     }
 
+    private void Img(PHWViewHolder holder, TipoProve tp) {
+        switch (tp) {
+            case Termiche:
+                //holder.classecard.setImageResource(R.drawable.termiche);
+                holder.classecard.setImageResource(R.drawable.ic_termiche);
+                break;
+            case Impermeabilita:
+                holder.classecard.setImageResource(R.drawable.ic_impermeabilita);
+                break;
+            case Vibrazione:
+                holder.classecard.setImageResource(R.drawable.ic_vibrazione);
+                break;
+            case DisturbiElettromagnetici:
+                holder.classecard.setImageResource(R.drawable.ic_disturbielettromagnetici);
+                break;
+            case DisturbiCondotti:
+                holder.classecard.setImageResource(R.drawable.ic_disturbicondotti);
+                break;
+            case BatteriaSottoProtezioneSF:
+                holder.classecard.setImageResource(R.drawable.ic_batteriasottoprotezionesf);
+                break;
+            case AlimentazioneBatteriaSenzaVincoloFiscale:
+                holder.classecard.setImageResource(R.drawable.ic_alimentazionebatteriasenzavincolofiscale);
+                break;
+            case ScaricheElettrostatiche:
+                holder.classecard.setImageResource(R.drawable.ic_scaricheelettrostatiche);
+                break;
+            case Guastoemalfunzionamento:
+                holder.classecard.setImageResource(R.drawable.ic_guastoemalfunzionamento);
+                break;
+        }
+
+
+
+
+
+
+
+    }
 
 
     @Override
@@ -153,6 +194,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         View i;
         int position;
         public ImageView overflow;
+        public ImageView classecard;
 
         public TextView TestHW;
         public TextView EsitoTestHW;
@@ -166,6 +208,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
 
             cv = (CardView)itemView.findViewById(R.id.card_viewinternalCT1);
             overflow = (ImageView) itemView.findViewById(R.id.overflowTHW);
+            classecard = (ImageView) itemView.findViewById(R.id.classecard);
 
             TestHW = (TextView) itemView.findViewById(R.id.textView101);
             EsitoTestHW = (TextView) itemView.findViewById(R.id.textView121);
