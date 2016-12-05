@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         rv.setLayoutManager(llm);
 
 
-        
+
 
         JsonFactory factory = new JsonFactory();
         LMF = factory.getMisuratoriFiscale();

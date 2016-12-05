@@ -40,5 +40,5 @@ dependencies {
     compile group: 'com.google.code.gson', name: 'gson', version: '2.6.2'
     compile group: 'commons-lang', name: 'commons-lang', version: '2.2'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
+    compile 'cnr.isti.sse.rest.data:dataTestHW:0.0.1'
 }
