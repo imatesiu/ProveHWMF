@@ -19,9 +19,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import isti.cnr.sse.rest.data.Allegato;
 import it.isti.sse.provehwmf.R;
-import it.isti.sse.provehwmf.pojo.Allegati;
-import it.isti.sse.provehwmf.pojo.Allegato;
+
 
 /**
  * Created by m4rt3 on 16/11/2016.
@@ -31,11 +31,11 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
 
 
     //private List<String> ListaAllegati;
-    private Allegati allegati;
+    private List<Allegato> allegati;
     private Context mContext;
 
 
-    public AllegatiAdapter(Context lContext, /*List<String> ListaAllegati,*/ Allegati allegati){
+    public AllegatiAdapter(Context lContext, /*List<String> ListaAllegati,*/ List<Allegato>  allegati){
         super();
         //this.ListaAllegati = ListaAllegati;
         this.mContext = lContext;
@@ -73,7 +73,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
       //  holder.classe.setText(lorario.get(position).getClasse());
 
 
-        init(holder,allegati.getAllegato().get(position));
+        init(holder,allegati.get(position));
         //holder.onClick(holder.i);
 
         holder.overflow.setOnClickListener(new AllegatiAdapter.MyMenuItemClickListenerMF(position));
@@ -95,7 +95,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                 case R.id.openprovaallegato:
                     Toast.makeText(mContext, "Open", Toast.LENGTH_SHORT).show();
                     try {
-                         Allegato allegato = allegati.getAllegato().get(position);
+                         Allegato allegato = allegati.get(position);
                         String tipo = allegato.getTipo();
                         String url = allegato.getUrl();
                         String dati = allegato.getDati();
@@ -138,7 +138,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                 case R.id.cancellaprovaallegato:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try {
-                        allegati.getAllegato().remove(position);
+                        allegati.remove(position);
                         notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception

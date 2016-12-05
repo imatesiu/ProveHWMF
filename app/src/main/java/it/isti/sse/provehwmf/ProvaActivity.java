@@ -24,13 +24,14 @@ import com.github.clans.fab.FloatingActionMenu;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import isti.cnr.sse.rest.data.Allegato;
+import isti.cnr.sse.rest.data.Esito;
+import isti.cnr.sse.rest.data.Prova;
+import isti.cnr.sse.rest.data.TipoProve;
 import it.isti.sse.provehwmf.adapter.AllegatiAdapter;
-import it.isti.sse.provehwmf.pojo.Allegati;
-import it.isti.sse.provehwmf.pojo.Allegato;
-import it.isti.sse.provehwmf.pojo.Esito;
-import it.isti.sse.provehwmf.pojo.ProvaHW;
-import it.isti.sse.provehwmf.pojo.TipoProve;
+
 
 public class ProvaActivity extends AppCompatActivity {
 
@@ -39,8 +40,8 @@ public class ProvaActivity extends AppCompatActivity {
     private EditText Matricola;
     private Spinner tipoprova;
     private Spinner esito;
-    private  Allegati allegati;
-    private ProvaHW TPHW = new ProvaHW();
+    private List<Allegato> allegati;
+    private Prova TPHW = new Prova();
     private boolean edited = false;
 
     @Override
@@ -136,15 +137,16 @@ public class ProvaActivity extends AppCompatActivity {
 
 
                 String model = modello.getText().toString();
-                TPHW.setModello(model);
-                TPHW.setMatricola(Matricola.getText().toString());
-                TPHW.setEdited(edited);
-                TPHW.setTipo(tipoprova.getSelectedItem().toString());
+                TPHW.setNomeModello(model);
+                TPHW.setNumeroRapportoProva(Matricola.getText().toString());
+               // TPHW.setSelezionabile(edited);
+                TPHW.setNomeProva(tipoprova.getSelectedItem().toString());
+                TPHW.setTp(TipoProve.values()[tipoprova.getSelectedItemPosition()]);
                 Esito e = Esito.values()[esito.getSelectedItemPosition()];
 
-                TPHW.setEsito(e);
+                TPHW.setStato(e);
 
-                TPHW.setAllegati(allegati);
+                TPHW.setListallegato(allegati);
                 String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
                 if(!edited)
                     TPHW.setTimeStartPHW(timeStamp);
@@ -190,7 +192,7 @@ public class ProvaActivity extends AppCompatActivity {
         llma.setOrientation(LinearLayoutManager.HORIZONTAL);
         rva.setLayoutManager(llma);
 
-        allegati = new Allegati();
+        allegati = new ArrayList<>();
         setInit(allegati);
 
         //TODO riempilista
@@ -216,8 +218,8 @@ public class ProvaActivity extends AppCompatActivity {
                // String result = data.getStringExtra("result");
                 Bundle b = getIntent().getExtras();
                 Allegato all = (Allegato) b.getSerializable("newAllegato");
-                TPHW.getAllegati().getAllegato().add(all);
-                allegati.getAllegato().add(all);
+                TPHW.getListallegato().add(all);
+                allegati.add(all);
                 edited = true;
 
             }
@@ -229,33 +231,33 @@ public class ProvaActivity extends AppCompatActivity {
         }
     }
 
-    public void setInit(Allegati init) {
+    public void setInit(List<Allegato> init) {
         try {
             Bundle b = getIntent().getExtras();
-            TPHW = (ProvaHW) b.getSerializable("Prova");
+            TPHW = (Prova) b.getSerializable("Prova");
             if(TPHW!=null) {
-                allegati = TPHW.getAllegati();
+                allegati = TPHW.getListallegato();
                 ArrayList<String> list = new ArrayList<String>();
                 ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),
                         android.R.layout.simple_spinner_item, list);
                 //list.add();
 
 
-                TipoProve tp = TipoProve.get(TPHW.getTipo());
+                TipoProve tp = TPHW.getTp();
                 tipoprova.setSelection(tp.ordinal());
-                Esito e = TPHW.getEsito();
+                Esito e = TPHW.getStato();
                 esito.setSelection(e.ordinal());
 
-                String tipoprovar = TPHW.getTipo();
+                String tipoprovar = TPHW.getNomeProva();
 
 
-                Matricola.setText(TPHW.getMatricola());
+                Matricola.setText(TPHW.getNumeroRapportoProva());
 
                 modello.setEnabled(false);
                 Matricola.setEnabled(false);
                 tipoprova.setEnabled(false);
                 esito.setEnabled(false);
-                modello.setText(TPHW.getModello());
+                modello.setText(TPHW.getNomeModello());
             }
 
 
@@ -273,7 +275,7 @@ public class ProvaActivity extends AppCompatActivity {
 
 
             if(matricola!=null) {
-                TPHW = new ProvaHW();
+                TPHW = new Prova();
                 Matricola.setText(matricola);
 
                 modello.setEnabled(false);

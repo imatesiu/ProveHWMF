@@ -1,4 +1,4 @@
-package it.isti.sse.provehwmf.pojo;
+package isti.cnr.sse.rest.data;
 
 /**
  * Created by m4rt3 on 20/11/2016.
@@ -12,8 +12,9 @@ public enum TipoProve {
     DisturbiElettromagnetici (4),
     DisturbiCondotti (5),
     BatteriaSottoProtezioneSF (6),
-    AlimentazioneSenzaVincoloFiscale (7),
-    ScaricheElettrostatiche (8);
+    AlimentazioneBatteriaSenzaVincoloFiscale (7),
+    ScaricheElettrostatiche (8),
+	Guastoemalfunzionamento (9);
 
     TipoProve(int i) {
     }
@@ -28,7 +29,7 @@ public enum TipoProve {
         if (tipo.equals("Disturbi Elettromagnetici")) {
             return DisturbiElettromagnetici;
         }
-        if (tipo.equals("Impermeabilità")) {
+        if (tipo.equals("Impermeabilit�")) {
             return Impermeabilita;
         }
         if (tipo.equals("Vibrazione")) {
@@ -40,8 +41,8 @@ public enum TipoProve {
         if (tipo.equals("Batteria Sotto Protezione SF")) {
             return BatteriaSottoProtezioneSF;
         }
-        if (tipo.equals("Alimentazione Senza Vincolo Fiscale")) {
-            return AlimentazioneSenzaVincoloFiscale;
+        if (tipo.equals("Alimentazione Batteria Senza Vincolo Fiscale")) {
+            return AlimentazioneBatteriaSenzaVincoloFiscale;
         }
         return ScaricheElettrostatiche;
     }

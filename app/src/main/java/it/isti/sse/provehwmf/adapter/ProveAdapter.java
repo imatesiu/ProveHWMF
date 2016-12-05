@@ -16,9 +16,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import isti.cnr.sse.rest.data.Prova;
 import it.isti.sse.provehwmf.R;
-import it.isti.sse.provehwmf.pojo.ProvaHW;
-import it.isti.sse.provehwmf.pojo.ProveHW;
+
 import it.isti.sse.provehwmf.util.Utility;
 
 /**
@@ -31,10 +31,10 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
     //private List<String> ListaProve;
     private Context mContext;
     private static MyClickListenerProve myClickListener;
-    private ProveHW LPHW;
+    private List<Prova> LPHW;
 
 
-    public ProveAdapter(Context mContext, /*List<String> Prove,*/ ProveHW LPHW){
+    public ProveAdapter(Context mContext, /*List<String> Prove,*/ List<Prova> LPHW){
         super();
        // this.ListaProve = Prove;
         this.mContext = mContext;
@@ -59,13 +59,13 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         return pvh;
     }
 
-    private void init(PHWViewHolder holder, ProvaHW PHW){
+    private void init(PHWViewHolder holder, Prova PHW){
 
-        holder.TestHW.setText("Prova: "+PHW.getTipo());
-        holder.EsitoTestHW.setText("Stato Prove: "+PHW.getEsito());
-        holder.cv.setCardBackgroundColor(Utility.getColor(PHW.getEsito()));
-        holder.matricola.setText("Matricola Fiscale: "+PHW.getMatricola());
-        holder.modello.setText("Modello: "+PHW.getModello());
+        holder.TestHW.setText("Prova: "+PHW.getTp());
+        holder.EsitoTestHW.setText("Stato Prove: "+PHW.getStato());
+        holder.cv.setCardBackgroundColor(Utility.getColor(PHW.getStato()));
+        holder.matricola.setText("Num Rapporto Prova: "+PHW.getNumeroRapportoProva());
+        holder.modello.setText("Modello: "+PHW.getNomeModello());
         holder.data.setText("Data: "+PHW.getTimeStartPHW());
     }
 
@@ -80,7 +80,7 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
         LPHW.getProvaHW().get(position).getTimeStartPHW();*/
 
         holder.position=position;
-        init(holder,LPHW.getProvaHW().get(position));
+        init(holder,LPHW.get(position));
         //holder.onClick(holder.i);
 
        // holder.TestHW.setText("Prova: Alimentazione senza\\n Vincolo Fiscale");
@@ -107,9 +107,9 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
-                    ProvaHW rova = new ProvaHW();
+                    Prova rova = new Prova();
                     try {
-                        rova = LPHW.getProvaHW().get(position);
+                        rova = LPHW.get(position);
                     }catch (IndexOutOfBoundsException | NullPointerException e){
                         //TODO: gestisci eccezione
                     }

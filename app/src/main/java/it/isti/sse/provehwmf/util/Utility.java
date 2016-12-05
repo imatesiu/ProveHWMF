@@ -7,7 +7,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import it.isti.sse.provehwmf.pojo.Esito;
+import isti.cnr.sse.rest.data.Esito;
+
 
 /**
  * Created by m4rt3 on 17/11/2016.

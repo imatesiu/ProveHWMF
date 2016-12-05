@@ -18,9 +18,9 @@ import org.apache.commons.lang.ObjectUtils;
 
 import java.util.List;
 
+import isti.cnr.sse.rest.data.ModelloMF;
 import it.isti.sse.provehwmf.R;
-import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
-import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
+
 
 /**
  * Created by m4rt3 on 16/11/2016.
@@ -31,10 +31,10 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
 
     private Context mContext;
     private static MyClickListener myClickListener;
-    private  MisuratoriFiscale LMF;
+    private  List<ModelloMF> LMF;
 
 
-    public MisuratoriFiscaleAdapter(Context lContext, MisuratoriFiscale LMF){
+    public MisuratoriFiscaleAdapter(Context lContext, List<ModelloMF> LMF){
         super();
         this.mContext = lContext;
         this.LMF=LMF;
@@ -57,19 +57,23 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
         return pvh;
     }
 
-    private void init(MFViewHolder holder,int position, MisuratoriFiscale LMF){
+    private void init(MFViewHolder holder,int position, List<ModelloMF> LMF){
         try {
-            String m = LMF.getMisuratoreFiscale().get(position).getMatricola();
+            String m = LMF.get(position).getNumeroRapportoProva();
             holder.matricola.setText(m);
-            String mod = LMF.getMisuratoreFiscale().get(position).getModello();
+            String mod = LMF.get(position).getNomeModello();
             holder.modello.setText("Modello: "+mod);
-            String e = LMF.getStatus(position);
+            String e = getStatus(position, LMF);
             holder.EsitoTestHW.setText("Stato Prove: "+e);
-            String d = LMF.getMisuratoreFiscale().get(position).getTimeMFStart();
-            holder.data.setText("Data: "+d);
+            String d = LMF.get(position).getDataArrivoModello();
+            holder.data.setText("Data Arrivo: "+d);
         }catch (NullPointerException e){
             //TODO:
         }
+    }
+
+    private String getStatus(int position, List<ModelloMF> lmf) {
+        return "";
     }
 
     @Override
@@ -104,9 +108,9 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
             switch (menuItem.getItemId()) {
                 case R.id.modificaprove:
                     Toast.makeText(mContext, "Edit", Toast.LENGTH_SHORT).show();
-                    MisuratoreFiscale MF = new MisuratoreFiscale();
+                    ModelloMF MF = new ModelloMF();
                     try{
-                      MF = LMF.getMisuratoreFiscale().get(position);
+                      MF = LMF.get(position);
                     }catch (IndexOutOfBoundsException | NullPointerException e){
                         //TODO: gestisci eccezione
                     }
@@ -116,7 +120,7 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
                 case R.id.cancellaprova:
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try{
-                        LMF.getMisuratoreFiscale().remove(position);
+                        LMF.remove(position);
                         notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception

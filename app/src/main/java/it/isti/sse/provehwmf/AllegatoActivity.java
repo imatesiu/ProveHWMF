@@ -25,7 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import it.isti.sse.provehwmf.pojo.Allegato;
+import isti.cnr.sse.rest.data.Allegato;
+import isti.cnr.sse.rest.data.TipoProve;
 import it.isti.sse.provehwmf.util.Utility;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -210,7 +211,8 @@ public class AllegatoActivity extends AppCompatActivity {
         Allegato a = new Allegato();
         String mtricolafiscale = matricole.getSelectedItem().toString();
         a.setMatricola(mtricolafiscale);
-        a.setTipoProva(tipoprova.getSelectedItem().toString());
+
+        a.setTipoprova(tipoprova.getSelectedItem().toString());
         String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
         a.setTime(timeStamp);
         a.setTipo(tipo);

@@ -1,21 +1,49 @@
 
-package it.isti.sse.provehwmf.pojo;
+package isti.cnr.sse.rest.data;
 
 import javax.annotation.Generated;
+
+
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 @Generated("org.jsonschema2pojo")
 public class Allegato implements Serializable, Comparable<Allegato> {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8351933523945481995L;
+
+
+	/**
      * 
      * (Required)
      * 
      */
-    @SerializedName("Matricola")
+	
+	@SerializedName("NRapportoProva")
+	@Expose
+	private String numeroRapportoProva;
+	
+    public String getNumeroRapportoProva() {
+		return numeroRapportoProva;
+	}
+
+	public void setNumeroRapportoProva(String numeroRapportoProva) {
+		this.numeroRapportoProva = numeroRapportoProva;
+	}
+
+	public void setTipoprova(String tipoprova) {
+		this.tipoprova = tipoprova;
+	}
+
+	@SerializedName("Matricola")
     @Expose
     private String matricola;
 
@@ -28,7 +56,7 @@ public class Allegato implements Serializable, Comparable<Allegato> {
      * (Required)
      * 
      */
-    @SerializedName("Tipo")
+    @SerializedName("TipoFile")
     @Expose
     private String tipo;
 
@@ -64,9 +92,7 @@ public class Allegato implements Serializable, Comparable<Allegato> {
      * (Required)
      * 
      */
-    @SerializedName("Note")
-    @Expose
-    private Note note;
+
     /**
      * 
      * (Required)
@@ -112,9 +138,7 @@ public class Allegato implements Serializable, Comparable<Allegato> {
     public String getTipo() {
         return tipo;
     }
-    public String getTipoProva() {
-        return tipoprova;
-    }
+
     /**
      * 
      * (Required)
@@ -125,9 +149,7 @@ public class Allegato implements Serializable, Comparable<Allegato> {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    public void setTipoProva(String tipoprova) {
-        this.tipoprova = tipoprova;
-    }
+  
 
     /**
      * 
@@ -173,17 +195,7 @@ public class Allegato implements Serializable, Comparable<Allegato> {
         this.time = time;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     * @return
-     *     The note
-     */
-    public Note getNote() {
-        return note;
-    }
-
+  
     public String getUrl() {
         return url;
     }
@@ -192,16 +204,6 @@ public class Allegato implements Serializable, Comparable<Allegato> {
         this.url = url;
     }
 
-    /**
-     * 
-     * (Required)
-     * 
-     * @param note
-     *     The Note
-     */
-    public void setNote(Note note) {
-        this.note = note;
-    }
 
     /**
      * 
@@ -227,17 +229,7 @@ public class Allegato implements Serializable, Comparable<Allegato> {
 
     @Override
     public String toString() {
-        return "Allegato{" +
-                "matricola='" + matricola + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", tipoprova='" + tipoprova + '\'' +
-                ", nome='" + nome + '\'' +
-                ", url='" + url + '\'' +
-                ", dati='" + dati + '\'' +
-                ", time='" + time + '\'' +
-                ", note=" + note +
-                ", userid='" + userid + '\'' +
-                '}';
+        return nome;
     }
 
     public String getNome() {
@@ -280,4 +272,21 @@ public class Allegato implements Serializable, Comparable<Allegato> {
     public void setModello(String model) {
         modello = model;
     }
+
+	public void init(String numeroRapportoProva2, String nomeModello, String nomeProva, String nome, String conttype) {
+		this.numeroRapportoProva = numeroRapportoProva2;
+		this.modello = nomeModello;
+		this.tipoprova = nomeProva;
+		this.nome = nome;
+		this.tipo = conttype;
+		
+		
+	}
+	
+	
+    
+    
+    
+    
+    
 }

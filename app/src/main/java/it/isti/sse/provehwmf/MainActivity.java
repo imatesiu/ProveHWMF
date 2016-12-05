@@ -33,12 +33,12 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import isti.cnr.sse.rest.data.Allegato;
+import isti.cnr.sse.rest.data.ModelloMF;
+import isti.cnr.sse.rest.data.Prova;
 import it.isti.sse.provehwmf.adapter.MisuratoriFiscaleAdapter;
 import it.isti.sse.provehwmf.adapter.MyClickListener;
-import it.isti.sse.provehwmf.pojo.Allegato;
-import it.isti.sse.provehwmf.pojo.MisuratoreFiscale;
-import it.isti.sse.provehwmf.pojo.MisuratoriFiscale;
-import it.isti.sse.provehwmf.pojo.ProvaHW;
+
 import it.isti.sse.provehwmf.util.JsonFactory;
 
 
@@ -46,7 +46,7 @@ import it.isti.sse.provehwmf.util.JsonFactory;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private MisuratoriFiscale LMF;
+    private List<ModelloMF> LMF;
     private MisuratoriFiscaleAdapter adapter;
 
     @Override
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
                 FloatingActionMenu menuRed = (FloatingActionMenu) findViewById(R.id.menu);
                 menuRed.close(false);
                 Intent i = new Intent(MainActivity.this, AllegatoActivity.class);
-                Pair<ArrayList<String>, ArrayList<String>> ListMFM = LMF.getMatricoleFiscali();
+                Pair<ArrayList<String>, ArrayList<String>> ListMFM = getNomeNumRapport(LMF);
                 i.putExtra("ListaMatricoleMF",ListMFM.first);
                 i.putExtra("ListaModelliMF",ListMFM.second);
                 //i.putExtra("key","value");
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         adapter.setMyClickListener(new MyClickListener() {
 
             @Override
-            public void onItemClick(int position, MisuratoreFiscale MF) {
+            public void onItemClick(int position, ModelloMF MF) {
                 Intent i = new Intent(MainActivity.this, MisuratoreFiscaleActivity.class);
                 i.putExtra("MF",MF);
                 startActivityForResult(i,550);
@@ -142,6 +142,17 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private Pair<ArrayList<String>,ArrayList<String>> getNomeNumRapport(List<ModelloMF> lmf) {
+        ArrayList<String> ListaMF = new ArrayList<>();
+        ListaMF.add("");
+        ArrayList<String> ListaM = new ArrayList<>();
+        ListaM.add("");
+        for (ModelloMF MF:lmf) {
+            ListaMF.add(MF.getNumeroRapportoProva());
+            ListaM.add(MF.getNomeModello());
+        }
+        return new Pair<>(ListaMF,ListaM);
+    }
 
 
     @Override
@@ -197,7 +208,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void saveData(MisuratoriFiscale LMF){
+    private void saveData(List<ModelloMF> LMF){
         try {
             FileOutputStream fos = openFileOutput("dataLMF.ser", Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -211,11 +222,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private MisuratoriFiscale readData() {
+    private List<ModelloMF> readData() {
         try {
             FileInputStream streamIn = openFileInput("dataLMF.ser");
             ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
-            MisuratoriFiscale readCase = (MisuratoriFiscale) objectinputstream.readObject();
+            List<ModelloMF> readCase = (List<ModelloMF>) objectinputstream.readObject();
             return readCase;
         } catch (Exception e) {
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -273,8 +284,8 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == Activity.RESULT_OK) {
                 try {
                     Bundle b = data.getExtras();
-                    MisuratoreFiscale MF = (MisuratoreFiscale) b.getSerializable("newMF");
-                    LMF.getMisuratoreFiscale().add(MF);
+                    ModelloMF MF = (ModelloMF) b.getSerializable("newMF");
+                    LMF.add(MF);
                     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                     Snackbar.make(drawer, "Salvato MF", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -297,8 +308,8 @@ public class MainActivity extends AppCompatActivity
                 if(resultCode == Activity.RESULT_OK){
                     try {
                         Bundle b = data.getExtras();
-                        ProvaHW NPHW = (ProvaHW) b.getSerializable("newProva");
-                        LMF.insert(NPHW);
+                        Prova NPHW = (Prova) b.getSerializable("newProva");
+                        insert(LMF, NPHW);
                         adapter.notifyDataSetChanged();
                         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                         Snackbar.make(drawer, "Prova Salvata", Snackbar.LENGTH_LONG)
@@ -319,7 +330,7 @@ public class MainActivity extends AppCompatActivity
                         try {
                             Bundle b = data.getExtras();
                             Allegato a = (Allegato) b.getSerializable("newAllegato");
-                            LMF.insert(a);
+                            insertAllegato(LMF, a);
                             adapter.notifyDataSetChanged();
 
                             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -340,5 +351,27 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+    }
+
+    private void insertAllegato(List<ModelloMF> lmf, Allegato a) {
+        for (ModelloMF m :lmf) {
+            if(m.getNumeroRapportoProva().equals(a.getNumeroRapportoProva())){
+                for(Prova p : m.getProve()) {
+                    if(p.getTp().toString().equals(a.getTipoprova())) {
+                        p.getListallegato().add(a);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void insert(List<ModelloMF> lmf, Prova nphw) {
+        for (ModelloMF m :lmf) {
+            if(m.getNumeroRapportoProva().equals(nphw.getNumeroRapportoProva())){
+                m.getProve().add(nphw);
+                break;
+            }
+        }
     }
 }
