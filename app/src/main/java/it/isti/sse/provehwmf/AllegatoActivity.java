@@ -1,6 +1,7 @@
 package it.isti.sse.provehwmf;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -20,10 +21,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.common.base.Predicates;
+import com.google.common.io.ByteStreams;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -234,10 +238,12 @@ public class AllegatoActivity extends AppCompatActivity {
         Allegato a = cAllegato(tipo);
         a.setNome(getFileName(data));
         try {
-            FileInputStream fi = new FileInputStream(new File(data.getPath()));
-            byte imageData[] = new byte[(int) fi.getChannel().size()];
+            ContentResolver cr = getBaseContext().getContentResolver();
+            InputStream inputStream = cr.openInputStream(data);
+            byte imageData[] = ByteStreams.toByteArray(inputStream);
 
-            fi.read(imageData);
+
+
             String d = Base64.encodeToString(imageData, Base64.DEFAULT);
             a.setDati(d);
         }catch (IOException e){
