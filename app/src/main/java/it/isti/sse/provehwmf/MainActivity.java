@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<ModelloMF> LMF;
     private MisuratoriFiscaleAdapter adapter;
-    private String URLbase =  "192.168.1.10"; // "146.48.84.52";
+    private String URLbase =   "146.48.84.52";// "192.168.1.10"; //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
