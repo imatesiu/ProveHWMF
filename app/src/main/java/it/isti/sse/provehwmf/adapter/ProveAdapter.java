@@ -160,7 +160,8 @@ public class ProveAdapter extends RecyclerView.Adapter<ProveAdapter.PHWViewHolde
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try{
                         LPHW.remove(position);
-                        notifyItemRemoved(position);
+                        notifyDataSetChanged();
+                        //notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception
                     }
