@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<ModelloMF> LMF;
     private MisuratoriFiscaleAdapter adapter;
-    private String URLbase = "192.168.1.30"; //146.48.84.52
+    private String URLbase =  "146.48.84.52"; // "192.168.1.30";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,12 +210,24 @@ public class MainActivity extends AppCompatActivity
 
             SendGetData();
         } else if (id == R.id.nav_send) {
+            sendModified();
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void sendModified() {
+        List<ModelloMF> lmf = new ArrayList<>();
+        for(ModelloMF m : LMF){
+            if(m.isEdited()){
+                lmf.add(m);
+            }
+        }
+        if(!lmf.isEmpty())
+            postSendData(lmf);
     }
 
 
@@ -261,7 +273,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void postSendData() {
+    private void postSendData(final List<ModelloMF> data) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL = "http://"+URLbase+":9090/cnr/sse/testhw/";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -284,7 +296,7 @@ public class MainActivity extends AppCompatActivity
             public byte[] getBody()  {
                 try {
                     Gson gson = new Gson();
-                    String str = gson.toJson(LMF);
+                    String str = gson.toJson(data);
                     return str == null ? null : str.getBytes("utf-8");
                 } catch (UnsupportedEncodingException uee) {
                     return null;

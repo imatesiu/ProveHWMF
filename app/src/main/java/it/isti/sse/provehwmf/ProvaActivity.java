@@ -141,6 +141,7 @@ public class ProvaActivity extends AppCompatActivity {
                 TPHW.setNomeModello(model);
                 TPHW.setNumeroRapportoProva(Matricola.getText().toString());
                // TPHW.setSelezionabile(edited);
+                TPHW.setEdited(true);
                 TPHW.setNomeProva(tipoprova.getSelectedItem().toString());
                 TPHW.setTp(TipoProve.values()[tipoprova.getSelectedItemPosition()]);
                 Esito e = Esito.values()[esito.getSelectedItemPosition()];
