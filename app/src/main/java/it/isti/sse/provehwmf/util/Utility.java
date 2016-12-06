@@ -34,13 +34,12 @@ public class Utility {
 
     public static int getColor(Esito e){
         switch (e){
-            case Incerto:
-                return Color.GRAY;
+            case Incerto: return Color.GRAY;
             case Positivo: return Color.GREEN;
             case Negativo: return Color.RED;
             case Incorso: return Color.BLUE;
-            case Sospeso: return Color.BLACK;
-                default:
+            case Sospeso: return Color.YELLOW;
+
         }
         return 1;
     }
