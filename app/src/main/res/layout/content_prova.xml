@@ -24,14 +24,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/spinnerMMF" />
 
-    <TextView
-        android:text="Allegati:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewAllegati"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -83,15 +75,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="22dp" />
 
-    <TextView
-        android:text="Tipo Prova:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView7"
-        android:layout_marginTop="27dp"
-        android:layout_below="@+id/spinnerMMF"
-        android:layout_alignParentStart="true" />
-
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,6 +84,24 @@
         android:layout_alignBottom="@+id/textView8"
         android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/spinnerTipoProva" />
+
+    <TextView
+        android:text="Tipo Prova:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/spinnerMMF"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Allegati:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewAllegati"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/spinnerEsito"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
