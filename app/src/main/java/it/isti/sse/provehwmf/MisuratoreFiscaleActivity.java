@@ -52,6 +52,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
     private List<Allegato> allegati;
     private ProveAdapter adapter;
     private AllegatiAdapter adaptera;
+    private ModelloMF MF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,14 +121,17 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                // Intent intent = new Intent(MisuratoreFiscaleActivity.this, MainActivity.class);
-                ModelloMF MF = new ModelloMF();
+                if(MF==null) {
+                    MF = new ModelloMF();
+                    String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
+                    MF.setDataArrivoModello(timeStamp);
+                }
                 String model = modello.getText().toString();
                 MF.setNomeDitta(model);
                 MF.setNumeroRapportoProva(Matricola.getText().toString());
                 MF.setNomeDitta(produttore.getText().toString());
                 MF.setProve(PHW);
-                //String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(new Date());
-               // MF.setTimeMFStart(timeStamp);
+
 
 
 
@@ -170,7 +174,7 @@ public class MisuratoreFiscaleActivity extends AppCompatActivity {
         allegati = new ArrayList<>();
         try {
             Bundle b = getIntent().getExtras();
-            ModelloMF MF = (ModelloMF) b.getSerializable("MF");
+            MF = (ModelloMF) b.getSerializable("MF");
             produttore.setText(MF.getNomeDitta());
             modello.setText(MF.getNomeModello());
             Matricola.setText(MF.getNumeroRapportoProva());

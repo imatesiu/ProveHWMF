@@ -290,6 +290,7 @@ public class Prova implements Serializable, Comparable<Prova> {
 	public void merge(Prova nphw) {
 		merge(nphw.getListallegato());
 		this.setStato(nphw.getStato());
+		this.setEdited(nphw.isEdited());
 	}
 
 	private void merge(List<Allegato> listallegato1) {

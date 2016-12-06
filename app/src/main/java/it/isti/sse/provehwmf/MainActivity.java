@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<ModelloMF> LMF;
     private MisuratoriFiscaleAdapter adapter;
-    private String URLbase =  "146.48.84.52"; // "192.168.1.30";
+    private String URLbase =  "192.168.1.10"; // "146.48.84.52";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,13 +236,13 @@ public class MainActivity extends AppCompatActivity
     private void sendProveModified() {
         List<Prova> lmf = new ArrayList<>();
         for(ModelloMF m : LMF){
-            if(m.isEdited()){
+
                 for(Prova p : m.getProve()) {
                     if (p.isEdited()) {
                         lmf.add(p);
                     }
                 }
-            }
+
         }
         if(!lmf.isEmpty()) {
             Gson gson = new Gson();
@@ -295,11 +295,13 @@ public class MainActivity extends AppCompatActivity
 
     private void postSendData(final String str) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String URL = "http://"+URLbase+":9090/cnr/sse/testhw/";
+        String URL = "http://"+URLbase+":9090/cnr/sse/testhw/listprovaupdated/";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                Snackbar.make(drawer, "Invio Effettuto", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
 
         }, new Response.ErrorListener() {
@@ -313,15 +315,18 @@ public class MainActivity extends AppCompatActivity
 
         }){
             @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+            @Override
             public byte[] getBody()  {
-                try {
 
-                    return str == null ? null : str.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    return null;
-                }
+
+                    return str == null ? null : str.getBytes();
+
             }
         };
+        requestQueue.add(stringRequest);
     }
     private void saveData(List<ModelloMF> LMF){
         try {
@@ -400,7 +405,8 @@ public class MainActivity extends AppCompatActivity
                 try {
                     Bundle b = data.getExtras();
                     ModelloMF MF = (ModelloMF) b.getSerializable("newMF");
-                    LMF.add(MF);
+                    insertMF(LMF,MF);
+                    adapter.notifyDataSetChanged();
                     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                     Snackbar.make(drawer, "Salvato MF", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
@@ -466,6 +472,15 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+    }
+
+    private void insertMF(List<ModelloMF> lmf, ModelloMF mf) {
+        int index = lmf.indexOf(mf);
+        if(index>=0){
+            lmf.remove(index);
+
+        }
+        lmf.add(mf);
     }
 
     private void insertAllegato(List<ModelloMF> lmf, Allegato a) {
