@@ -35,7 +35,7 @@
                 android:layout_gravity="center|right"
                 android:gravity="center|right"
 
-                android:src="@drawable/ic_gradient"
+                android:src="@drawable/ic_cash_register"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="1dp"
                 android:textAlignment="center"
