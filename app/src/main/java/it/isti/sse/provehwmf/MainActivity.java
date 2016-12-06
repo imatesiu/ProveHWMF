@@ -38,6 +38,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<ModelloMF> LMF;
     private MisuratoriFiscaleAdapter adapter;
+    private String URLbase = "192.168.1.30"; //146.48.84.52
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -222,10 +224,11 @@ public class MainActivity extends AppCompatActivity
         saveData(LMF);
         super.onPause();
     }
+
     private void SendGetData() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://146.48.84.52:9090/cnr/sse/testhw/misuratorifiscali/";
+        String url ="http://"+URLbase+":9090/cnr/sse/testhw/misuratorifiscali/";
 
 // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -258,6 +261,37 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void postSendData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String URL = "http://"+URLbase+":9090/cnr/sse/testhw/";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                Snackbar.make(drawer, "Problema\\nNessun Invio Effettuto", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+
+            }
+
+        }){
+            @Override
+            public byte[] getBody()  {
+                try {
+                    Gson gson = new Gson();
+                    String str = gson.toJson(LMF);
+                    return str == null ? null : str.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    return null;
+                }
+            }
+        };
+    }
     private void saveData(List<ModelloMF> LMF){
         try {
             FileOutputStream fos = openFileOutput("dataLMF.ser", Context.MODE_PRIVATE);
