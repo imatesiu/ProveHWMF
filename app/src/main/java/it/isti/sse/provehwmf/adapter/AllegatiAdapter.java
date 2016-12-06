@@ -147,7 +147,8 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try {
                         allegati.remove(position);
-                        notifyItemRemoved(position);
+                        notifyDataSetChanged();
+                       // notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception
                     }

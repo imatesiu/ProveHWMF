@@ -121,7 +121,8 @@ public class MisuratoriFiscaleAdapter extends RecyclerView.Adapter<MisuratoriFis
                     Toast.makeText(mContext, "Delete", Toast.LENGTH_SHORT).show();
                     try{
                         LMF.remove(position);
-                        notifyItemRemoved(position);
+                        notifyDataSetChanged();
+                        //notifyItemRemoved(position);
                     }catch (IndexOutOfBoundsException e){
                         //TODO: exception
                     }
