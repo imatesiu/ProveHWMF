@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        JsonFactory factory = new JsonFactory();
-        LMF = factory.getMisuratoriFiscale();
+
+        LMF = readData();
         adapter = new MisuratoriFiscaleAdapter(this,LMF);
 
 
@@ -218,6 +218,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void onPause(){
+        saveData(LMF);
+        super.onPause();
+    }
     private void SendGetData() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -276,7 +281,7 @@ public class MainActivity extends AppCompatActivity
             Snackbar.make(drawer, "Problema\\nNessun MF Caricato", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     private void requestPermission(){
