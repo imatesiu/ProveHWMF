@@ -115,6 +115,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                                     intent.setDataAndType(Uri.parse(url), "image/*");
                                     mContext.startActivity(intent);
                                 }
+                                break;
                             }
                             case "application/pdf": {
                                 if (url != null) {
@@ -123,6 +124,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                                     intent.setDataAndType(Uri.parse(url), "application/pdf");
                                     mContext.startActivity(intent);
                                 }
+                                break;
                             }
                             case "text/plain": {
                                 if (url != null) {
@@ -131,6 +133,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                                     intent.setDataAndType(Uri.parse(url), "text/plain");
                                     mContext.startActivity(intent);
                                 }
+                                break;
                             }
 
                             default:
