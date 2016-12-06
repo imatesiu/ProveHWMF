@@ -11,6 +11,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -146,6 +149,7 @@ public class AllegatoActivity extends AppCompatActivity {
                 Uri uri = data.getData();
 
                 Allegato a = createAllegato(uri,"FILE");
+
                 Intent i = getIntent().putExtra("newAllegato",a);
                 //TODO:caricafile
                 setResult(Activity.RESULT_OK,i);//, intent);
@@ -217,6 +221,7 @@ public class AllegatoActivity extends AppCompatActivity {
         a.setTime(timeStamp);
         a.setTipo(tipo);
         a.setModello(modello.getSelectedItem().toString());
+        a.setEdited(true);
         //TODO: userid
         a.setUserid("Ge");
         a.setNome("");
@@ -228,7 +233,17 @@ public class AllegatoActivity extends AppCompatActivity {
     private Allegato createAllegato(Uri data, String tipo) {
         Allegato a = cAllegato(tipo);
         a.setNome(getFileName(data));
-        a.setDati("");
+        try {
+            FileInputStream fi = new FileInputStream(new File(data.getPath()));
+            byte imageData[] = new byte[(int) fi.getChannel().size()];
+
+            fi.read(imageData);
+            String d = Base64.encodeToString(imageData, Base64.DEFAULT);
+            a.setDati(d);
+        }catch (IOException e){
+            //TODO tratta eccezzione
+        }
+
         a.setUrl(data.getPath());
         return  a;
     }
