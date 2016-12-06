@@ -108,7 +108,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                         String url = allegato.getUrl();
                         String dati = allegato.getDati();
                         switch (tipo) {
-                            case "JPG": {
+                            case "image/jpeg": {
                                 if (url != null) {
                                     Intent intent = new Intent();
                                     intent.setAction(Intent.ACTION_VIEW);
@@ -116,7 +116,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                                     mContext.startActivity(intent);
                                 }
                             }
-                            case "FILE": {
+                            case "application/pdf": {
                                 if (url != null) {
                                     Intent intent = new Intent();
                                     intent.setAction(Intent.ACTION_VIEW);
@@ -124,7 +124,7 @@ public class AllegatiAdapter extends RecyclerView.Adapter<AllegatiAdapter.PHWVie
                                     mContext.startActivity(intent);
                                 }
                             }
-                            case "NOTE": {
+                            case "text/plain": {
                                 if (url != null) {
                                     Intent intent = new Intent();
                                     intent.setAction(Intent.ACTION_VIEW);
