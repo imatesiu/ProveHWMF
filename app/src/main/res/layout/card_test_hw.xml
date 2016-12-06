@@ -78,7 +78,7 @@
             android:textStyle="normal|bold" />
 
         <TextView
-            android:text="Matricola Fiscale: 1255998-552"
+            android:text="NumRapProva: 1255998-552"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView91"

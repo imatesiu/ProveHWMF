@@ -82,7 +82,7 @@
             android:layout_toEndOf="@+id/card_viewinternalCT2" />
 
         <TextView
-            android:text="Matricola Fiscale:"
+            android:text="NumRapProva:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView9"

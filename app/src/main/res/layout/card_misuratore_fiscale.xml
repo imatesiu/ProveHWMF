@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
 
             card_view:cardCornerRadius="4dp"
 
-            card_view:cardBackgroundColor="@android:color/holo_red_light"
+            card_view:cardBackgroundColor="@android:color/transparent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_centerVertical="true"
@@ -47,7 +48,7 @@
         </android.support.v7.widget.CardView>
 
         <TextView
-            android:text="Matricola Fiscale:"
+            android:text="Numero Rapporto Prova:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView9"
