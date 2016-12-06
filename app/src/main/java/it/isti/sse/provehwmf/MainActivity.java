@@ -22,14 +22,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,6 +208,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_receive) {
 
+            SendGetData();
         } else if (id == R.id.nav_send) {
 
         }
@@ -206,6 +216,39 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void SendGetData() {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://146.48.84.52:9090/cnr/sse/testhw/misuratorifiscali/";
+
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Type type = new TypeToken<ArrayList<ModelloMF>>() {}.getType();
+                        Gson gson = new Gson();
+                        ArrayList<ModelloMF> list = gson.fromJson(response, type);
+                        LMF.clear();
+                        LMF.addAll(list);
+                        adapter.notifyDataSetChanged();
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        Snackbar.make(drawer, "OK", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                Snackbar.make(drawer, "Problema\\nNessun MF Downloadato", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 
     private void saveData(List<ModelloMF> LMF){
