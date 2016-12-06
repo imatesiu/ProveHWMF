@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity
 
             SendGetData();
         } else if (id == R.id.nav_send) {
-            sendModified();
+            sendProveModified();
 
         }
 
@@ -226,10 +226,30 @@ public class MainActivity extends AppCompatActivity
                 lmf.add(m);
             }
         }
-        if(!lmf.isEmpty())
-            postSendData(lmf);
+        if(!lmf.isEmpty()) {
+            Gson gson = new Gson();
+            String str = gson.toJson(lmf);
+            postSendData(str);
+        }
     }
 
+    private void sendProveModified() {
+        List<Prova> lmf = new ArrayList<>();
+        for(ModelloMF m : LMF){
+            if(m.isEdited()){
+                for(Prova p : m.getProve()) {
+                    if (p.isEdited()) {
+                        lmf.add(p);
+                    }
+                }
+            }
+        }
+        if(!lmf.isEmpty()) {
+            Gson gson = new Gson();
+            String str = gson.toJson(lmf);
+            postSendData(str);
+        }
+    }
 
     @Override
     public void onPause(){
@@ -273,7 +293,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void postSendData(final List<ModelloMF> data) {
+    private void postSendData(final String str) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String URL = "http://"+URLbase+":9090/cnr/sse/testhw/";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -295,8 +315,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public byte[] getBody()  {
                 try {
-                    Gson gson = new Gson();
-                    String str = gson.toJson(data);
+
                     return str == null ? null : str.getBytes("utf-8");
                 } catch (UnsupportedEncodingException uee) {
                     return null;
