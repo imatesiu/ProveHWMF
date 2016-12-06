@@ -106,6 +106,18 @@ public class Allegato implements Serializable, Comparable<Allegato> {
     @Expose
     private String modello;
 
+
+
+    private boolean edited;
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
+    }
+
     /**
      * 
      * (Required)

@@ -74,8 +74,16 @@ public class Prova implements Serializable, Comparable<Prova> {
     @SerializedName("TimeEndPHW")
     @Expose
     private String timeEndPHW;
-    
-	
+
+	private boolean edited;
+
+	public boolean isEdited() {
+		return edited;
+	}
+
+	public void setEdited(boolean edited) {
+		this.edited = edited;
+	}
 
 	public Prova() {}
 

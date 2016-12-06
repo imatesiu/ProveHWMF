@@ -44,6 +44,9 @@ public enum TipoProve {
         if (tipo.equals("Alimentazione Batteria Senza Vincolo Fiscale")) {
             return AlimentazioneBatteriaSenzaVincoloFiscale;
         }
+        if (tipo.equals("Gusto e Malfunzionamento")) {
+            return Guastoemalfunzionamento;
+        }
         return ScaricheElettrostatiche;
     }
 }

@@ -36,6 +36,16 @@ public class ModelloMF implements Serializable,Comparable<ModelloMF>{
     @Expose
 	private List<Prova> prove = new ArrayList<>();
 
+	private boolean edited;
+
+	public boolean isEdited() {
+		return edited;
+	}
+
+	public void setEdited(boolean edited) {
+		this.edited = edited;
+	}
+
 	public ModelloMF(){
 		
 	}
